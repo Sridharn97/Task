@@ -36,7 +36,15 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <Link to="/" className="flex items-center space-x-2">
-            <Eye className="w-8 h-8 text-blue-600" />
+           <motion.img
+  src="/vite.svg"
+  alt="3rd Eye Solutions Logo"
+  initial={{ rotate: -10, opacity: 0 }}
+  animate={{ rotate: 0, opacity: 1 }}
+  transition={{ duration: 0.6, ease: 'easeOut' }}
+  className="w-10 h-10 hover:scale-110 transition-transform duration-300"
+/>
+
             <span className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-cyan-400 bg-clip-text text-transparent">
               3rd Eye Solutions
             </span>
