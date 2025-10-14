@@ -1,6 +1,7 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Zap, Package, FileText, BarChart3, Sparkles, TrendingUp, Shield } from 'lucide-react';
+import DashboardMockup from '../components/DashBoardMockup';
 
 const Home = () => {
   const { scrollYProgress } = useScroll();
@@ -135,20 +136,14 @@ const Home = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 50 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.8 }}
-            className="relative animate-float"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="mt-12 flex justify-center px-4"
           >
-            <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-3xl blur-3xl opacity-30"></div>
-            <img
-              src="https://images.pexels.com/photos/5632371/pexels-photo-5632371.jpeg?auto=compress&cs=tinysrgb&w=1200"
-              alt="Modern POS System"
-              className="relative mx-auto rounded-3xl shadow-2xl max-w-5xl w-full border-4 border-white/50"
-              onError={(e) => {
-                e.target.src = 'https://images.pexels.com/photos/4968630/pexels-photo-4968630.jpeg?auto=compress&cs=tinysrgb&w=1200';
-              }}
-            />
+            <div className="w-full max-w-5xl p-6 bg-white/90 backdrop-blur-md rounded-3xl shadow-2xl border border-white/30 transform hover:scale-105 transition-transform duration-300">
+              <DashboardMockup />
+            </div>
           </motion.div>
         </motion.div>
       </section>

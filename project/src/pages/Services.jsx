@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
 import {
   Brain,
   Cloud,
@@ -11,7 +11,9 @@ import {
   Smartphone,
   Users,
   Sparkles,
+  Zap,
 } from 'lucide-react';
+import { useState } from 'react';
 
 const Services = () => {
   const services = [
@@ -82,27 +84,172 @@ const Services = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.08,
+        staggerChildren: 0.05,
       },
     },
   };
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 40, scale: 0.9 },
+    hidden: { opacity: 0, y: 50, scale: 0.9 },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
       transition: {
-        duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        type: 'spring',
+        stiffness: 100,
+        damping: 15,
       },
     },
+  };
+
+  const ServiceCard = ({ service, index }) => {
+    const [isHovered, setIsHovered] = useState(false);
+    const x = useMotionValue(0);
+    const y = useMotionValue(0);
+
+    const rotateX = useTransform(y, [-100, 100], [8, -8]);
+    const rotateY = useTransform(x, [-100, 100], [-8, 8]);
+
+    const springConfig = { stiffness: 300, damping: 30 };
+    const rotateXSpring = useSpring(rotateX, springConfig);
+    const rotateYSpring = useSpring(rotateY, springConfig);
+
+    const handleMouseMove = (e) => {
+      const rect = e.currentTarget.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      x.set(e.clientX - centerX);
+      y.set(e.clientY - centerY);
+    };
+
+    const handleMouseLeave = () => {
+      x.set(0);
+      y.set(0);
+      setIsHovered(false);
+    };
+
+    return (
+      <motion.div
+        variants={itemVariants}
+        onMouseMove={handleMouseMove}
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={handleMouseLeave}
+        style={{
+          rotateX: rotateXSpring,
+          rotateY: rotateYSpring,
+          transformStyle: 'preserve-3d',
+        }}
+        className="relative rounded-3xl overflow-hidden bg-white shadow-xl hover:shadow-2xl transition-all duration-500 h-full flex flex-col"
+      >
+        <motion.div
+          animate={{
+            opacity: isHovered ? 0.1 : 0,
+          }}
+          className="absolute inset-0 bg-gradient-to-br from-blue-50 to-cyan-50"
+        ></motion.div>
+
+        <motion.div
+          animate={{
+            scale: isHovered ? 1.5 : 1,
+            opacity: isHovered ? 0.15 : 0,
+          }}
+          transition={{ duration: 0.5 }}
+          className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${service.color} rounded-full blur-3xl`}
+        ></motion.div>
+
+        <div className="relative p-8 flex-1 flex flex-col" style={{ transform: 'translateZ(50px)' }}>
+          <motion.div
+            animate={{
+              rotate: isHovered ? 360 : 0,
+              scale: isHovered ? 1.15 : 1,
+            }}
+            transition={{ duration: 0.6, type: 'spring' }}
+            className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-6 shadow-2xl`}
+          >
+            <service.icon className="w-10 h-10 text-white" />
+          </motion.div>
+
+          <h3 className="text-xl font-black text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+            {service.title}
+          </h3>
+          <p className="text-gray-600 leading-relaxed mb-6 flex-1">{service.description}</p>
+
+          <motion.div
+            initial={{ width: 0 }}
+            whileInView={{ width: '100%' }}
+            viewport={{ once: true }}
+            transition={{ delay: index * 0.03, duration: 0.8 }}
+            className={`h-2 bg-gradient-to-r ${service.color} rounded-full shadow-lg`}
+          ></motion.div>
+        </div>
+
+        <motion.div
+          animate={{
+            opacity: isHovered ? 1 : 0,
+            y: isHovered ? 0 : 20,
+          }}
+          className="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-white/95 to-transparent backdrop-blur-sm"
+          style={{ transform: 'translateZ(75px)' }}
+        >
+          <button className="w-full px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold rounded-xl hover:shadow-lg transition-all duration-300 flex items-center justify-center space-x-2">
+            <span>Learn More</span>
+            <Zap className="w-4 h-4" />
+          </button>
+        </motion.div>
+      </motion.div>
+    );
   };
 
   return (
     <div className="min-h-screen pt-24 pb-16 overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-cyan-50 -z-10"></div>
+
+      <motion.div
+        className="absolute inset-0 overflow-hidden pointer-events-none -z-10"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+      >
+        <motion.div
+          animate={{
+            scale: [1, 1.2, 1],
+            x: [0, 80, 0],
+            y: [0, 60, 0],
+          }}
+          transition={{
+            duration: 18,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+          className="absolute top-20 left-20 w-96 h-96 bg-purple-400 rounded-full blur-3xl opacity-20"
+        ></motion.div>
+        <motion.div
+          animate={{
+            scale: [1, 1.3, 1],
+            x: [0, -80, 0],
+            y: [0, 80, 0],
+          }}
+          transition={{
+            duration: 22,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+          className="absolute bottom-20 right-20 w-96 h-96 bg-cyan-400 rounded-full blur-3xl opacity-20"
+        ></motion.div>
+        <motion.div
+          animate={{
+            scale: [1, 1.1, 1],
+            x: [0, 60, 0],
+            y: [0, -60, 0],
+          }}
+          transition={{
+            duration: 25,
+            repeat: Infinity,
+            ease: 'easeInOut',
+          }}
+          className="absolute top-1/2 left-1/2 w-96 h-96 bg-blue-400 rounded-full blur-3xl opacity-15"
+        ></motion.div>
+      </motion.div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
@@ -136,50 +283,11 @@ const Services = () => {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-fr"
+          style={{ perspective: '1000px' }}
         >
           {services.map((service, index) => (
-            <motion.div
-              key={service.title}
-              variants={itemVariants}
-              whileHover={{ scale: 1.05, y: -10, rotateY: 5 }}
-              className="relative rounded-3xl overflow-hidden bg-white shadow-xl hover:shadow-2xl transition-all duration-500 group perspective-1000"
-            >
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-50 to-cyan-50 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-
-              <div className="absolute top-0 right-0 w-40 h-40 bg-gradient-to-br from-blue-500/10 to-cyan-500/10 rounded-full blur-3xl transform translate-x-20 -translate-y-20 group-hover:scale-150 transition-transform duration-500"></div>
-
-              <div className="relative p-8">
-                <motion.div
-                  whileHover={{ rotate: 360, scale: 1.15 }}
-                  transition={{ duration: 0.6, type: 'spring' }}
-                  className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-6 shadow-2xl group-hover:shadow-3xl`}
-                >
-                  <service.icon className="w-10 h-10 text-white" />
-                </motion.div>
-
-                <h3 className="text-xl font-black text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
-                  {service.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed mb-6">{service.description}</p>
-
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: '100%' }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.05, duration: 0.8 }}
-                  className={`h-1.5 bg-gradient-to-r ${service.color} rounded-full`}
-                ></motion.div>
-              </div>
-
-              <motion.div
-                initial={{ opacity: 0 }}
-                whileHover={{ opacity: 1 }}
-                className="absolute inset-0 pointer-events-none"
-              >
-                <div className="absolute inset-0 bg-gradient-to-t from-white/50 to-transparent"></div>
-              </motion.div>
-            </motion.div>
+            <ServiceCard key={service.title} service={service} index={index} />
           ))}
         </motion.div>
 
@@ -190,13 +298,23 @@ const Services = () => {
           transition={{ duration: 0.8, delay: 0.3 }}
           className="mt-24 relative overflow-hidden rounded-3xl"
         >
-          <div className="absolute inset-0 bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-600 animate-gradient"></div>
+          <motion.div
+            animate={{
+              backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
+            }}
+            transition={{
+              duration: 12,
+              repeat: Infinity,
+              ease: 'linear',
+            }}
+            className="absolute inset-0 bg-gradient-to-r from-blue-600 via-purple-600 via-cyan-500 to-blue-600 bg-[length:200%_100%]"
+          ></motion.div>
 
-          <div className="absolute inset-0 opacity-20">
+          <div className="absolute inset-0 opacity-30">
             <motion.div
               animate={{
                 scale: [1, 1.2, 1],
-                rotate: [0, 90, 0],
+                rotate: [0, 180, 360],
               }}
               transition={{
                 duration: 20,
@@ -208,7 +326,7 @@ const Services = () => {
             <motion.div
               animate={{
                 scale: [1, 1.3, 1],
-                rotate: [0, -90, 0],
+                rotate: [360, 180, 0],
               }}
               transition={{
                 duration: 25,
@@ -229,7 +347,7 @@ const Services = () => {
               <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black mb-6">
                 Need a Custom Service?
               </h2>
-              <p className="text-xl sm:text-2xl mb-10 opacity-90 max-w-3xl mx-auto leading-relaxed">
+              <p className="text-xl sm:text-2xl mb-10 opacity-95 max-w-3xl mx-auto leading-relaxed">
                 We're here to help you with any retail technology challenge. Let's discuss your unique needs.
               </p>
               <motion.button
@@ -241,7 +359,7 @@ const Services = () => {
                 <motion.div
                   initial={{ x: '-100%' }}
                   whileHover={{ x: '100%' }}
-                  transition={{ duration: 0.5 }}
+                  transition={{ duration: 0.6 }}
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-100 to-transparent"
                 ></motion.div>
               </motion.button>
