@@ -1,6 +1,8 @@
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Zap, Package, FileText, BarChart3, Sparkles, TrendingUp, Shield } from 'lucide-react';
+import { Star } from 'lucide-react';
+
 
 const Home = () => {
   const { scrollYProgress } = useScroll();
@@ -316,6 +318,259 @@ const Home = () => {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1, duration: 0.8 }}
                   className={`h-1 bg-gradient-to-r ${feature.gradient} mt-6 rounded-full`}
+                ></motion.div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+     
+
+      <section className="relative py-24 bg-gradient-to-br from-gray-50 via-white to-blue-50">
+        {/* Add these decorative circles */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute top-0 left-0 w-96 h-96 bg-blue-300 rounded-full opacity-20 blur-3xl"></div>
+          <div className="absolute bottom-0 right-0 w-96 h-96 bg-cyan-300 rounded-full opacity-20 blur-3xl"></div>
+          <div className="absolute top-1/2 left-1/3 w-72 h-72 bg-indigo-300 rounded-full opacity-20 blur-3xl"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-5xl sm:text-6xl font-black text-gray-900 mb-6">
+              Our{' '}
+              <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+                Store Gallery
+              </span>
+            </h2>
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+              Take a glimpse at some of the retail stores revolutionizing their business with our solutions
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            {[
+              {
+                image: "https://images.pexels.com/photos/264507/pexels-photo-264507.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                title: "Modern Supermarket",
+                location: "Mumbai, India"
+              },
+              {
+                image: "https://images.pexels.com/photos/3687999/pexels-photo-3687999.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                title: "Electronics Store",
+                location: "Bangalore, India"
+              },
+              {
+                image: "https://images.pexels.com/photos/1884584/pexels-photo-1884584.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                title: "Fashion Outlet",
+                location: "Delhi, India"
+              },
+              {
+                image: "https://images.pexels.com/photos/3965548/pexels-photo-3965548.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                title: "Grocery Store",
+                location: "Chennai, India"
+              },
+              {
+                image: "https://images.pexels.com/photos/2988232/pexels-photo-2988232.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                title: "Pharmacy",
+                location: "Hyderabad, India"
+              },
+              {
+                image: "https://images.pexels.com/photos/2733918/pexels-photo-2733918.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1",
+                title: "Department Store",
+                location: "Pune, India"
+              }
+            ].map((store, index) => (
+              <motion.div
+                key={store.title}
+                variants={itemVariants}
+                className="group relative overflow-hidden rounded-3xl"
+              >
+                <motion.div
+                  whileHover={{ scale: 1.05 }}
+                  className="relative h-96 w-full overflow-hidden"
+                >
+                  <img
+                    src={store.image}
+                    alt={store.title}
+                    className="h-full w-full object-cover transition-transform duration-300 group-hover:scale-110"
+                    onError={(e) => {
+                      e.target.src = 'https://images.pexels.com/photos/264507/pexels-photo-264507.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1';
+                    }}
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
+                      <h3 className="text-2xl font-bold mb-2">{store.title}</h3>
+                      <p className="text-sm font-medium">{store.location}</p>
+                    </div>
+                  </div>
+                </motion.div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      <section className="relative py-24 bg-white">
+        {/* Add these decorative circles */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute -top-20 -left-20 w-96 h-96 bg-blue-200 rounded-full opacity-20 blur-3xl"></div>
+          <div className="absolute top-1/3 right-0 w-80 h-80 bg-cyan-200 rounded-full opacity-20 blur-3xl"></div>
+          <div className="absolute -bottom-20 left-1/3 w-72 h-72 bg-indigo-200 rounded-full opacity-20 blur-3xl"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-5xl sm:text-6xl font-black text-gray-900 mb-6">
+              What Our{' '}
+              <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+                Customers
+              </span>{' '}
+              Say
+            </h2>
+            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+              Read testimonials from businesses that transformed their operations with our solutions
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          >
+            {[
+              {
+                name: "Rajesh Kumar",
+                role: "Store Owner, Chennai",
+                image: "https://randomuser.me/api/portraits/men/1.jpg",
+                review: "The billing system has completely streamlined our operations. We've seen a 40% increase in efficiency.",
+                rating: 5
+              },
+              {
+                name: "Priya Sharma",
+                role: "Department Manager, Mumbai",
+                image: "https://randomuser.me/api/portraits/women/2.jpg",
+                review: "Real-time inventory tracking has eliminated stockouts. Customer satisfaction is at an all-time high.",
+                rating: 5
+              },
+              {
+                name: "Amit Patel",
+                role: "Retail Chain Owner, Bangalore",
+                image: "https://randomuser.me/api/portraits/men/3.jpg",
+                review: "Managing multiple stores became effortless. The analytics help us make data-driven decisions.",
+                rating: 4.8
+              },
+              {
+                name: "Sneha Reddy",
+                role: "Operations Head, Hyderabad",
+                image: "https://randomuser.me/api/portraits/women/4.jpg",
+                review: "The GST compliance features save us hours of work. Best investment for our business.",
+                rating: 4.9
+              },
+              {
+                name: "Arjun Singh",
+                role: "Store Manager, Delhi",
+                image: "https://randomuser.me/api/portraits/men/5.jpg",
+                review: "Customer support is exceptional. They're always there when we need them.",
+                rating: 5
+              },
+              {
+                name: "Maya Iyer",
+                role: "Business Owner, Pune",
+                image: "https://randomuser.me/api/portraits/women/6.jpg",
+                review: "The AI insights have helped us optimize our inventory and increase profits significantly.",
+                rating: 4.7
+              },
+              {
+                name: "Vikram Mehta",
+                role: "Retail Director, Ahmedabad",
+                image: "https://randomuser.me/api/portraits/men/7.jpg",
+                review: "Seamless integration with our existing systems. The transition was smooth and effective.",
+                rating: 4.8
+              },
+              {
+                name: "Anita Desai",
+                role: "Finance Manager, Kolkata",
+                image: "https://randomuser.me/api/portraits/women/8.jpg",
+                review: "The automated reporting saves us countless hours. Reconciliation is now a breeze.",
+                rating: 4.9
+              },
+              {
+                name: "Karthik Rajan",
+                role: "Store Owner, Coimbatore",
+                image: "https://randomuser.me/api/portraits/men/9.jpg",
+                review: "Best decision we made for our business. The ROI has been exceptional.",
+                rating: 5
+              },
+              {
+                name: "Lakshmi Menon",
+                role: "Operations Director, Kochi",
+                image: "https://randomuser.me/api/portraits/women/10.jpg",
+                review: "The mobile app allows us to manage operations on the go. Highly recommended!",
+                rating: 4.9
+              }
+            ].map((review, index) => (
+              <motion.div
+                key={review.name}
+                variants={itemVariants}
+                whileHover={{ y: -10, scale: 1.02 }}
+                className="relative p-8 rounded-3xl bg-gradient-to-br from-white to-blue-50 border border-blue-100 shadow-xl hover:shadow-2xl transition-all duration-300"
+              >
+                <div className="flex items-center mb-6">
+                  <img
+                    src={review.image}
+                    alt={review.name}
+                    className="w-16 h-16 rounded-full border-2 border-blue-500 object-cover"
+                    onError={(e) => {
+                      e.target.src = `https://ui-avatars.com/api/?name=${review.name}&background=random`;
+                    }}
+                  />
+                  <div className="ml-4">
+                    <h3 className="text-xl font-bold text-gray-900">{review.name}</h3>
+                    <p className="text-blue-600">{review.role}</p>
+                  </div>
+                </div>
+                <div className="flex items-center mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className={`w-5 h-5 ${
+                        i < Math.floor(review.rating)
+                          ? "text-yellow-400 fill-yellow-400"
+                          : "text-gray-300"
+                      }`}
+                    />
+                  ))}
+                  <span className="ml-2 text-sm font-bold text-gray-600">
+                    {review.rating}
+                  </span>
+                </div>
+                <p className="text-gray-700 leading-relaxed">{review.review}</p>
+                <motion.div
+                  initial={{ width: 0 }}
+                  whileInView={{ width: "100%" }}
+                  viewport={{ once: true }}
+                  transition={{ delay: index * 0.1, duration: 0.8 }}
+                  className="h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mt-6 rounded-full"
                 ></motion.div>
               </motion.div>
             ))}
