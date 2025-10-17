@@ -132,11 +132,10 @@ const Home = () => {
             {[...Array(5)].map((_, i) => (
               <Star
                 key={i}
-                className={`w-5 h-5 ${
-                  i < Math.floor(review.rating)
+                className={`w-5 h-5 ${i < Math.floor(review.rating)
                     ? "text-yellow-400 fill-yellow-400"
                     : "text-gray-300"
-                }`}
+                  }`}
               />
             ))}
             <span className="ml-2 text-sm font-bold text-gray-600">
@@ -424,7 +423,7 @@ const Home = () => {
           </motion.div>
         </div>
       </section>
-     
+
 
       <section className="relative py-12 sm:py-24 bg-gradient-to-br from-gray-50 via-white to-blue-50">
         {/* Add these decorative circles */}
@@ -525,50 +524,172 @@ const Home = () => {
           </motion.div>
         </div>
       </section>
-<section
-  className="relative py-12 sm:py-24 bg-cover bg-center bg-no-repeat"
-  style={{
-    backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url('https://bcposgroup.com/wp-content/uploads/2021/08/pos-supermarket-.jpg')`,
-  }}
->
-  {/* Decorative circles */}
-  <div className="absolute inset-0 pointer-events-none overflow-hidden">
-    <div className="absolute -top-20 -left-20 w-96 h-96 bg-blue-200 rounded-full opacity-20 blur-3xl"></div>
-    <div className="absolute top-1/3 right-0 w-80 h-80 bg-cyan-200 rounded-full opacity-20 blur-3xl"></div>
-    <div className="absolute -bottom-20 left-1/3 w-72 h-72 bg-indigo-200 rounded-full opacity-20 blur-3xl"></div>
-  </div>
-
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <section className="py-20 sm:py-28 bg-white">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    {/* Section Heading */}
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      transition={{ duration: 0.8 }}
-      className="text-center mb-8 sm:mb-16"
+      transition={{ duration: 0.6 }}
+      className="text-center mb-12"
     >
-      <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-gray-900 mb-4 sm:mb-6">
-        What Our{' '}
+      <h3 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 mb-3">
+        Our{" "}
         <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
-          Customers
-        </span>{' '}
-        Say
-      </h2>
-      <p className="text-base sm:text-xl text-gray-700 max-w-3xl mx-auto">
-        Read testimonials from businesses that transformed their operations with our solutions
+          Clients
+        </span>
+      </h3>
+      <p className="text-base sm:text-lg text-gray-700 mt-2 font-medium">
+        Powering the world’s most innovative companies.
+      </p>
+      <p className="text-sm sm:text-base text-gray-600 mt-1">
+        From next-gen startups to global enterprises.
       </p>
     </motion.div>
 
-    <motion.div
-      variants={containerVariants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true }}
-      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
-    >
-      {companyReviews}
-    </motion.div>
+  {/* Infinite Marquee Logos */}
+    {/* <div className="overflow-hidden relative py-10 h-48">
+      <motion.div
+        className="flex gap-12 md:gap-16"
+        animate={{ x: [0, "-50%"] }}
+        transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
+        style={{ width: "max-content" }}
+      >
+        {[...Array(2)].map((_, setIndex) => (
+          <div key={setIndex} className="flex gap-12 md:gap-16">
+            {[
+              "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/D-Mart_Logo.png/800px-D-Mart_Logo.png",
+              "https://logos-world.net/wp-content/uploads/2021/11/Big-Bazaar-Logo.png",
+              "https://1000logos.net/wp-content/uploads/2021/05/Reliance-Digital-logo.png",
+              "https://companieslogo.com/img/orig/SPENCERS.NS-8337b504.png",
+              "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/More_Retail_Logo.png/800px-More_Retail_Logo.png",
+            ].map((src, i) => (
+              <motion.div
+                key={`${setIndex}-${i}`}
+                className="flex-shrink-0 w-40 md:w-48 flex items-center justify-center"
+                style={{
+                  scale: 1,
+                }}
+                whileInView={{
+                  scale: [0.8, 1.3, 0.8],
+                  transition: {
+                    duration: 2,
+                    ease: "easeInOut",
+                  }
+                }}
+                viewport={{ amount: 0.5 }}
+              >
+                <div className="bg-white rounded-2xl p-6 shadow-lg w-full h-32 flex items-center justify-center">
+                  <img
+                    src={src}
+                    alt={`Client Logo ${i + 1}`}
+                    className="max-h-20 max-w-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
+                    onError={(e) => {
+                      e.target.src = `https://ui-avatars.com/api/?name=Client+${i + 1}&size=200&background=0095FF&color=fff&bold=true`;
+                    }}
+                  />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        ))}
+      </motion.div>
+    </div> */}
+    <div className="overflow-hidden relative py-20 h-72">
+  <motion.div
+    className="flex gap-12 md:gap-16"
+    animate={{ x: [0, "-50%"] }}
+    transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
+    style={{ width: "max-content" }}
+  >
+    {[...Array(2)].map((_, setIndex) => (
+      <div key={setIndex} className="flex gap-12 md:gap-16">
+        {[
+          "https://th.bing.com/th/id/OIP.4qazsiP3ztfihRXQyxM36gAAAA?w=161&h=180&c=7&r=0&o=7&cb=12&dpr=1.3&pid=1.7&rm=3",
+          "https://th.bing.com/th/id/OIP.LDURAqnvbpI0og00hyVcogHaHa?w=158&h=180&c=7&r=0&o=7&cb=12&dpr=1.3&pid=1.7&rm=3",
+          "https://th.bing.com/th/id/OIP.jzZalbhgc42LihQ7y7bG8wHaFj?w=215&h=180&c=7&r=0&o=7&cb=12&dpr=1.3&pid=1.7&rm=3",
+          "https://th.bing.com/th/id/OIP.zg8aw64NXheyq_SG8Y3FjQHaHa?w=171&h=180&c=7&r=0&o=7&cb=12&dpr=1.3&pid=1.7&rm=3",
+          "https://th.bing.com/th/id/OIP.d9WkFT-vXl9Pd9nIcMDVAQHaFc?w=247&h=182&c=7&r=0&o=7&cb=12&dpr=1.3&pid=1.7&rm=3",
+        ].map((src, i) => (
+          <motion.div
+            key={`${setIndex}-${i}`}
+            className="flex-shrink-0 w-48 md:w-56 flex items-center justify-center"
+            whileHover={{
+              scale: 1.2,
+              y: -10,
+              transition: { duration: 0.4, ease: "easeInOut" },
+            }}
+            whileTap={{ scale: 0.95 }}
+          >
+            <div className="bg-white rounded-2xl p-6 shadow-lg w-full h-40 flex items-center justify-center hover:shadow-2xl transition-all duration-500">
+              <img
+                src={src}
+                alt={`Client Logo ${i + 1}`}
+                className="max-h-28 max-w-full object-contain filter grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                onError={(e) => {
+                  e.target.src = `https://ui-avatars.com/api/?name=Client+${
+                    i + 1
+                  }&size=200&background=0095FF&color=fff&bold=true`;
+                }}
+              />
+            </div>
+          </motion.div>
+        ))}
+      </div>
+    ))}
+  </motion.div>
+</div>
+
   </div>
 </section>
+
+      <section
+        className="relative py-12 sm:py-24 bg-cover bg-center bg-no-repeat"
+        style={{
+          backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url('https://bcposgroup.com/wp-content/uploads/2021/08/pos-supermarket-.jpg')`,
+        }}
+      >
+        {/* Decorative circles */}
+        <div className="absolute inset-0 pointer-events-none overflow-hidden">
+          <div className="absolute -top-20 -left-20 w-96 h-96 bg-blue-200 rounded-full opacity-20 blur-3xl"></div>
+          <div className="absolute top-1/3 right-0 w-80 h-80 bg-cyan-200 rounded-full opacity-20 blur-3xl"></div>
+          <div className="absolute -bottom-20 left-1/3 w-72 h-72 bg-indigo-200 rounded-full opacity-20 blur-3xl"></div>
+        </div>
+
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-8 sm:mb-16"
+          >
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-gray-900 mb-4 sm:mb-6">
+              What Our{' '}
+              <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+                Customers
+              </span>{' '}
+              Say
+            </h2>
+            <p className="text-base sm:text-xl text-gray-700 max-w-3xl mx-auto">
+              Read testimonials from businesses that transformed their operations with our solutions
+            </p>
+          </motion.div>
+
+          <motion.div
+            variants={containerVariants}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+          >
+            {companyReviews}
+          </motion.div>
+        </div>
+      </section>
+
+
 
     </div>
   );
