@@ -140,7 +140,7 @@ const Services = () => {
           rotateY: rotateYSpring,
           transformStyle: 'preserve-3d',
         }}
-        className="relative rounded-3xl overflow-hidden bg-white shadow-xl hover:shadow-2xl transition-all duration-500 h-full flex flex-col"
+        className="relative rounded-3xl overflow-hidden bg-white shadow-xl hover:shadow-2xl transition-all duration-500 h-full flex flex-col p-4 sm:p-6 lg:p-8"
       >
         <motion.div
           animate={{
@@ -165,15 +165,17 @@ const Services = () => {
               scale: isHovered ? 1.15 : 1,
             }}
             transition={{ duration: 0.6, type: 'spring' }}
-            className={`w-20 h-20 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-6 shadow-2xl`}
+            className={`w-16 h-16 md:w-20 md:h-20 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-4 md:mb-6 shadow-2xl`}
           >
-            <service.icon className="w-10 h-10 text-white" />
+            <service.icon className="w-8 h-8 md:w-10 md:h-10 text-white" />
           </motion.div>
 
-          <h3 className="text-xl font-black text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+          <h3 className="text-lg md:text-xl font-black text-gray-900 mb-2 md:mb-3 group-hover:text-blue-600 transition-colors">
             {service.title}
           </h3>
-          <p className="text-gray-600 leading-relaxed mb-6 flex-1">{service.description}</p>
+          <p className="text-sm md:text-base text-gray-600 leading-relaxed mb-4 md:mb-6 flex-1">
+            {service.description}
+          </p>
 
           <motion.div
             initial={{ width: 0 }}
@@ -251,7 +253,7 @@ const Services = () => {
         ></motion.div>
       </motion.div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 2xl:px-16">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -283,7 +285,7 @@ const Services = () => {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-fr"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-4 md:gap-6 lg:gap-8 auto-rows-fr"
           style={{ perspective: '1000px' }}
         >
           {services.map((service, index) => (
@@ -337,7 +339,7 @@ const Services = () => {
             ></motion.div>
           </div>
 
-        
+          
         </motion.div>
       </div>
     </div>
