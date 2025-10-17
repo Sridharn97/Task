@@ -524,15 +524,15 @@ const Home = () => {
           </motion.div>
         </div>
       </section>
-      <section className="py-20 sm:py-28 bg-white">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    {/* Section Heading */}
+      <section className="py-20 bg-white">
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+    {/* Heading */}
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.6 }}
-      className="text-center mb-12"
+      className="mb-12"
     >
       <h3 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 mb-3">
         Our{" "}
@@ -540,100 +540,92 @@ const Home = () => {
           Clients
         </span>
       </h3>
-      <p className="text-base sm:text-lg text-gray-700 mt-2 font-medium">
+      <p className="text-lg sm:text-xl text-gray-700 mt-3 font-medium">
         Powering the world’s most innovative companies.
       </p>
-      <p className="text-sm sm:text-base text-gray-600 mt-1">
+      <p className="text-base sm:text-lg text-gray-600 mt-1">
         From next-gen startups to global enterprises.
       </p>
     </motion.div>
 
-  {/* Infinite Marquee Logos */}
-    {/* <div className="overflow-hidden relative py-10 h-48">
-      <motion.div
-        className="flex gap-12 md:gap-16"
-        animate={{ x: [0, "-50%"] }}
-        transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
-        style={{ width: "max-content" }}
-      >
-        {[...Array(2)].map((_, setIndex) => (
-          <div key={setIndex} className="flex gap-12 md:gap-16">
-            {[
-              "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/D-Mart_Logo.png/800px-D-Mart_Logo.png",
-              "https://logos-world.net/wp-content/uploads/2021/11/Big-Bazaar-Logo.png",
-              "https://1000logos.net/wp-content/uploads/2021/05/Reliance-Digital-logo.png",
-              "https://companieslogo.com/img/orig/SPENCERS.NS-8337b504.png",
-              "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/More_Retail_Logo.png/800px-More_Retail_Logo.png",
-            ].map((src, i) => (
-              <motion.div
-                key={`${setIndex}-${i}`}
-                className="flex-shrink-0 w-40 md:w-48 flex items-center justify-center"
-                style={{
-                  scale: 1,
-                }}
-                whileInView={{
-                  scale: [0.8, 1.3, 0.8],
-                  transition: {
-                    duration: 2,
-                    ease: "easeInOut",
-                  }
-                }}
-                viewport={{ amount: 0.5 }}
-              >
-                <div className="bg-white rounded-2xl p-6 shadow-lg w-full h-32 flex items-center justify-center">
-                  <img
-                    src={src}
-                    alt={`Client Logo ${i + 1}`}
-                    className="max-h-20 max-w-full object-contain filter grayscale hover:grayscale-0 transition-all duration-300"
-                    onError={(e) => {
-                      e.target.src = `https://ui-avatars.com/api/?name=Client+${i + 1}&size=200&background=0095FF&color=fff&bold=true`;
-                    }}
-                  />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        ))}
-      </motion.div>
-    </div> */}
-    <div className="overflow-hidden relative py-20 h-72">
+    {/* Infinite Scrolling Logos */}
+   <div className="overflow-hidden relative py-20 bg-gray-50">
+  {/* Top Row (moves left) */}
   <motion.div
-    className="flex gap-12 md:gap-16"
+    className="flex gap-12 mb-12"
     animate={{ x: [0, "-50%"] }}
     transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
     style={{ width: "max-content" }}
   >
     {[...Array(2)].map((_, setIndex) => (
-      <div key={setIndex} className="flex gap-12 md:gap-16">
+      <div key={setIndex} className="flex gap-12">
         {[
-          "https://th.bing.com/th/id/OIP.4qazsiP3ztfihRXQyxM36gAAAA?w=161&h=180&c=7&r=0&o=7&cb=12&dpr=1.3&pid=1.7&rm=3",
-          "https://th.bing.com/th/id/OIP.LDURAqnvbpI0og00hyVcogHaHa?w=158&h=180&c=7&r=0&o=7&cb=12&dpr=1.3&pid=1.7&rm=3",
-          "https://th.bing.com/th/id/OIP.jzZalbhgc42LihQ7y7bG8wHaFj?w=215&h=180&c=7&r=0&o=7&cb=12&dpr=1.3&pid=1.7&rm=3",
-          "https://th.bing.com/th/id/OIP.zg8aw64NXheyq_SG8Y3FjQHaHa?w=171&h=180&c=7&r=0&o=7&cb=12&dpr=1.3&pid=1.7&rm=3",
-          "https://th.bing.com/th/id/OIP.d9WkFT-vXl9Pd9nIcMDVAQHaFc?w=247&h=182&c=7&r=0&o=7&cb=12&dpr=1.3&pid=1.7&rm=3",
-        ].map((src, i) => (
+          { src: "https://cdn-icons-png.flaticon.com/512/5968/5968854.png", name: "Google" },
+          { src: "https://cdn-icons-png.flaticon.com/512/733/733579.png", name: "Twitter" },
+          { src: "https://cdn-icons-png.flaticon.com/512/5968/5968764.png", name: "LinkedIn" },
+          { src: "https://cdn-icons-png.flaticon.com/512/5968/5968773.png", name: "YouTube" },
+          { src: "https://cdn-icons-png.flaticon.com/512/5968/5968899.png", name: "Instagram" },
+        ].map((item, i) => (
           <motion.div
             key={`${setIndex}-${i}`}
-            className="flex-shrink-0 w-48 md:w-56 flex items-center justify-center"
+            className="flex-shrink-0 w-40 md:w-48 flex flex-col items-center justify-center"
             whileHover={{
-              scale: 1.2,
-              y: -10,
+              scale: 1.1,
+              y: -8,
               transition: { duration: 0.4, ease: "easeInOut" },
             }}
-            whileTap={{ scale: 0.95 }}
           >
-            <div className="bg-white rounded-2xl p-6 shadow-lg w-full h-40 flex items-center justify-center hover:shadow-2xl transition-all duration-500">
+            <div className="bg-white rounded-2xl p-6 shadow-lg w-full h-32 flex items-center justify-center hover:shadow-2xl transition-all duration-500">
               <img
-                src={src}
-                alt={`Client Logo ${i + 1}`}
-                className="max-h-28 max-w-full object-contain filter grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
-                onError={(e) => {
-                  e.target.src = `https://ui-avatars.com/api/?name=Client+${
-                    i + 1
-                  }&size=200&background=0095FF&color=fff&bold=true`;
-                }}
+                src={item.src}
+                alt={item.name}
+                className="max-h-20 object-contain filter grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
               />
             </div>
+            <p className="text-center text-gray-700 font-medium mt-3 text-sm">
+              {item.name}
+            </p>
+          </motion.div>
+        ))}
+      </div>
+    ))}
+  </motion.div>
+
+  {/* Bottom Row (moves right to left) */}
+  <motion.div
+    className="flex gap-12"
+    animate={{ x: ["-50%", 0] }}
+    transition={{ repeat: Infinity, duration: 35, ease: "linear" }}
+    style={{ width: "max-content" }}
+  >
+    {[...Array(2)].map((_, setIndex) => (
+      <div key={setIndex} className="flex gap-12">
+        {[
+          { src: "https://cdn-icons-png.flaticon.com/512/5968/5968841.png", name: "Amazon" },
+          { src: "https://cdn-icons-png.flaticon.com/512/732/732221.png", name: "Adobe" },
+          { src: "https://cdn-icons-png.flaticon.com/512/174/174872.png", name: "Dribbble" },
+          { src: "https://cdn-icons-png.flaticon.com/512/174/174857.png", name: "Behance" },
+          { src: "https://cdn-icons-png.flaticon.com/512/733/733547.png", name: "Facebook" },
+        ].map((item, i) => (
+          <motion.div
+            key={`${setIndex}-${i}`}
+            className="flex-shrink-0 w-40 md:w-48 flex flex-col items-center justify-center"
+            whileHover={{
+              scale: 1.1,
+              y: -8,
+              transition: { duration: 0.4, ease: "easeInOut" },
+            }}
+          >
+            <div className="bg-white rounded-2xl p-6 shadow-lg w-full h-32 flex items-center justify-center hover:shadow-2xl transition-all duration-500">
+              <img
+                src={item.src}
+                alt={item.name}
+                className="max-h-20 object-contain filter grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+              />
+            </div>
+            <p className="text-center text-gray-700 font-medium mt-3 text-sm">
+              {item.name}
+            </p>
           </motion.div>
         ))}
       </div>
@@ -641,6 +633,25 @@ const Home = () => {
   </motion.div>
 </div>
 
+
+    {/* Text Below Logos */}
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8 }}
+      viewport={{ once: true }}
+      className="mt-12 space-y-3 text-gray-700"
+    >
+      <p className="text-lg font-medium">
+        Trusted by industry leaders across retail, technology, and innovation.
+      </p>
+      <p className="text-base text-gray-600">
+        Empowering businesses to achieve excellence through collaboration.
+      </p>
+      <p className="text-base text-gray-600">
+        Together, we’re building the future — one partnership at a time.
+      </p>
+    </motion.div>
   </div>
 </section>
 
