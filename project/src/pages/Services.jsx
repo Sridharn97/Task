@@ -337,34 +337,7 @@ const Services = () => {
             ></motion.div>
           </div>
 
-          <div className="relative p-12 sm:p-20 text-center text-white">
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black mb-6">
-                Need a Custom Service?
-              </h2>
-              <p className="text-xl sm:text-2xl mb-10 opacity-95 max-w-3xl mx-auto leading-relaxed">
-                We're here to help you with any retail technology challenge. Let's discuss your unique needs.
-              </p>
-              <motion.button
-                whileHover={{ scale: 1.08, y: -8 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-12 py-6 bg-white text-blue-600 font-black text-xl rounded-2xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
-              >
-                <span className="relative z-10">Schedule a Consultation</span>
-                <motion.div
-                  initial={{ x: '-100%' }}
-                  whileHover={{ x: '100%' }}
-                  transition={{ duration: 0.6 }}
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-100 to-transparent"
-                ></motion.div>
-              </motion.button>
-            </motion.div>
-          </div>
+        
         </motion.div>
       </div>
     </div>

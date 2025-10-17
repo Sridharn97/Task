@@ -330,35 +330,108 @@ const Products = () => {
             className="absolute inset-0 bg-gradient-to-r from-blue-600 via-cyan-500 via-purple-500 to-blue-600 bg-[length:200%_100%]"
           ></motion.div>
 
-          <div className="relative p-12 sm:p-20 text-center text-white">
+          
+        </motion.div>
+
+        {/* New Section for FAQs */}
+        <section className="relative py-16 lg:py-24">
+          {/* Background styling */}
+          <div className="absolute inset-0 bg-gradient-to-br from-gray-50 via-white to-blue-50"></div>
+          
+          {/* Decorative elements */}
+          <div className="absolute inset-0 overflow-hidden pointer-events-none">
+            <div className="absolute top-0 right-0 w-96 h-96 bg-blue-200 rounded-full blur-3xl opacity-20"></div>
+            <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-200 rounded-full blur-3xl opacity-20"></div>
+          </div>
+
+          <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              whileInView={{ scale: 1, opacity: 1 }}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
+              transition={{ duration: 0.8 }}
+              className="text-center mb-16"
             >
-              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black mb-6">
-                Need a Custom Solution?
+              <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-gray-900 mb-6">
+                Frequently Asked{' '}
+                <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+                  Questions
+                </span>
               </h2>
-              <p className="text-xl sm:text-2xl mb-10 opacity-95 max-w-3xl mx-auto leading-relaxed">
-                We offer tailor-made solutions designed specifically for your unique business needs
+              <p className="text-lg sm:text-xl text-gray-700 max-w-3xl mx-auto">
+                Find answers to common questions about our products and services
               </p>
-              <motion.button
-                whileHover={{ scale: 1.08, y: -8 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-12 py-6 bg-white text-blue-600 font-black text-xl rounded-2xl hover:shadow-2xl transition-all duration-300 relative overflow-hidden group"
-              >
-                <span className="relative z-10">Request Custom Solution</span>
+            </motion.div>
+
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+            >
+              {[
+                {
+                  question: "Trial Period?",
+                  answer: "We offer a risk-free 14-day trial period with full access to all features. No credit card required.",
+                  gradient: "from-blue-600 to-cyan-500"
+                },
+                {
+                  question: "Performance Guarantees?",
+                  answer: "We guarantee 99.9% uptime and provide performance monitoring with real-time analytics.",
+                  gradient: "from-purple-600 to-pink-500"
+                },
+                {
+                  question: "Customer Support?",
+                  answer: "24/7 dedicated support via email, live chat, and phone with average response time under 2 hours.",
+                  gradient: "from-green-600 to-teal-500"
+                },
+                {
+                  question: "Customization Options?",
+                  answer: "Fully customizable solutions with white-labeling options and API access for integration.",
+                  gradient: "from-orange-600 to-red-500"
+                },
+                {
+                  question: "Data Security?",
+                  answer: "Bank-grade encryption, regular security audits, and compliance with GDPR and data protection standards.",
+                  gradient: "from-indigo-600 to-blue-500"
+                },
+                {
+                  question: "Updates & Maintenance?",
+                  answer: "Automatic updates, regular maintenance, and continuous AI model improvements included.",
+                  gradient: "from-pink-600 to-rose-500"
+                }
+              ].map((faq, index) => (
                 <motion.div
-                  initial={{ x: '-100%' }}
-                  whileHover={{ x: '100%' }}
-                  transition={{ duration: 0.6 }}
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-blue-100 to-transparent"
-                ></motion.div>
-              </motion.button>
+                  key={faq.question}
+                  variants={itemVariants}
+                  whileHover={{ y: -5, scale: 1.02 }}
+                  className="relative p-8 rounded-3xl bg-white shadow-xl hover:shadow-2xl transition-all duration-300"
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-white to-gray-50 rounded-3xl"></div>
+                  <div className="relative">
+                    <div className={`w-12 h-12 mb-6 rounded-2xl bg-gradient-to-br ${faq.gradient} flex items-center justify-center`}>
+                      <span className="text-xl font-black text-white">{index + 1}</span>
+                    </div>
+                    <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-4">
+                      {faq.question}
+                    </h3>
+                    <p className="text-gray-600 leading-relaxed">
+                      {faq.answer}
+                    </p>
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: "100%" }}
+                      viewport={{ once: true }}
+                      transition={{ delay: index * 0.1, duration: 0.8 }}
+                      className={`h-1 bg-gradient-to-r ${faq.gradient} mt-6 rounded-full`}
+                    ></motion.div>
+                  </div>
+                </motion.div>
+              ))}
             </motion.div>
           </div>
-        </motion.div>
+        </section>
       </div>
     </div>
   );

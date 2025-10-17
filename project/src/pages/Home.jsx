@@ -64,9 +64,104 @@ const Home = () => {
     },
   };
 
+  const companyReviews = [
+    {
+      name: "D-Mart",
+      type: "Supermarket Chain",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/D-Mart_Logo.png/800px-D-Mart_Logo.png",
+      review: "3rd Eye Solutions transformed our billing operations across 200+ stores. The AI-driven analytics have been game-changing.",
+      rating: 5
+    },
+    {
+      name: "Reliance Smart",
+      type: "Retail Chain",
+      logo: "https://www.reliancesmart.in/Image/Logo.png",
+      review: "Implementing this system resulted in 45% faster checkout times and significantly improved customer satisfaction.",
+      rating: 4.9
+    },
+    {
+      name: "More Retail",
+      type: "Supermarket",
+      logo: "https://upload.wikimedia.org/wikipedia/commons/thumb/0/00/More_Retail_Logo.png/800px-More_Retail_Logo.png",
+      review: "The inventory management system has reduced our stockouts by 60%. Outstanding results!",
+      rating: 4.8
+    },
+    {
+      name: "Nilgiris",
+      type: "Supermarket Chain",
+      logo: "https://nilgiris1905.com/images/logo.png",
+      review: "Excellent system for multi-store operations. Real-time analytics help us make better decisions.",
+      rating: 4.9
+    },
+    {
+      name: "Spencer's",
+      type: "Retail Chain",
+      logo: "https://www.spencers.in/media/logo/stores/1/spencers_logo.png",
+      review: "The GST compliance features and automated reporting save us countless hours every month.",
+      rating: 5
+    },
+    {
+      name: "Big Bazaar",
+      type: "Hypermarket",
+      logo: "https://logos-world.net/wp-content/uploads/2021/11/Big-Bazaar-Logo.png",
+      review: "Seamless integration with our existing systems. The transition was smooth across all outlets.",
+      rating: 4.8
+    }
+  ].map((review, index) => (
+    <motion.div
+      key={review.name}
+      variants={itemVariants}
+      whileHover={{ y: -10, scale: 1.02 }}
+      className="relative p-8 rounded-3xl bg-gradient-to-br from-white to-blue-50 border border-blue-100 shadow-xl hover:shadow-2xl transition-all duration-300"
+    >
+      <div className="flex items-center mb-6">
+        <div className="w-24 h-24 relative rounded-xl overflow-hidden border-2 border-blue-100 bg-white p-2">
+          <img
+            src={review.logo}
+            alt={`${review.name} logo`}
+            className="w-full h-full object-contain"
+            onError={(e) => {
+              e.target.src = `https://ui-avatars.com/api/?name=${review.name}&size=200&background=random`;
+            }}
+          />
+        </div>
+        <div className="ml-4 flex-1">
+          <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-1">{review.name}</h3>
+          <p className="text-sm sm:text-base text-blue-600 font-medium">{review.type}</p>
+          <div className="flex items-center mt-2">
+            {[...Array(5)].map((_, i) => (
+              <Star
+                key={i}
+                className={`w-5 h-5 ${
+                  i < Math.floor(review.rating)
+                    ? "text-yellow-400 fill-yellow-400"
+                    : "text-gray-300"
+                }`}
+              />
+            ))}
+            <span className="ml-2 text-sm font-bold text-gray-600">
+              {review.rating}
+            </span>
+          </div>
+        </div>
+      </div>
+      <div className="relative">
+        <div className="absolute -left-2 -top-2 text-5xl text-blue-500/10 font-serif">"</div>
+        <p className="text-base sm:text-lg text-gray-700 leading-relaxed relative z-10 pl-4">{review.review}</p>
+      </div>
+      <motion.div
+        initial={{ width: 0 }}
+        whileInView={{ width: "100%" }}
+        viewport={{ once: true }}
+        transition={{ delay: index * 0.1, duration: 0.8 }}
+        className="h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mt-6 rounded-full"
+      ></motion.div>
+    </motion.div>
+  ));
+
   return (
     <div className="min-h-screen overflow-hidden">
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden py-12 sm:py-24">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-cyan-50 to-blue-100"></div>
 
         {/* Decorative circles - removed blur and motion so dashboard stays crisp */}
@@ -89,13 +184,15 @@ const Home = () => {
               className="inline-flex items-center px-4 py-2 rounded-full bg-white/50 backdrop-blur-sm border border-blue-200 mb-8"
             >
               <Sparkles className="w-4 h-4 text-blue-600 mr-2" />
-              <span className="text-sm font-semibold text-blue-600">Trusted by 500+ Businesses</span>
+              <span className="text-xs sm:text-sm md:text-base font-semibold text-blue-600">
+                Trusted by 500+ Businesses
+              </span>
             </motion.div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black text-gray-900 mb-4 sm:mb-6 leading-tight px-2">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 mb-4 sm:mb-6 leading-tight">
               Smart Billing.{' '}
               <br className="hidden sm:block" />
-              <span className="bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-500 bg-clip-text text-transparent animate-gradient">
+              <span className="bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-500 bg-clip-text text-transparent">
                 Smarter Business.
               </span>
             </h1>
@@ -105,7 +202,7 @@ const Home = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-700 mb-8 sm:mb-12 max-w-4xl mx-auto font-medium px-4"
+            className="text-lg sm:text-xl md:text-2xl text-gray-700 mb-6 sm:mb-8 max-w-4xl mx-auto font-medium px-4"
           >
             Empowering departmental stores with AI-powered billing and inventory systems.
           </motion.p>
@@ -118,14 +215,14 @@ const Home = () => {
           >
             <Link
               to="/products"
-              className="group relative px-10 py-5 bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-bold text-lg rounded-2xl overflow-hidden transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-blue-500/50"
+              className="group relative px-6 sm:px-10 py-4 sm:py-5 text-base sm:text-lg font-bold bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-2xl overflow-hidden transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-blue-500/50"
             >
               <span className="relative z-10">Explore Products</span>
               <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </Link>
             <Link
               to="/contact"
-              className="group px-10 py-5 bg-white text-blue-600 font-bold text-lg rounded-2xl border-2 border-blue-600 hover:bg-blue-600 hover:text-white transform hover:scale-105 transition-all duration-300 shadow-xl"
+              className="group px-6 sm:px-10 py-4 sm:py-5 text-base sm:text-lg font-bold text-blue-600 rounded-2xl border-2 border-blue-600 hover:bg-blue-600 hover:text-white transform hover:scale-105 transition-all duration-300 shadow-xl"
             >
               Contact Us
             </Link>
@@ -144,7 +241,7 @@ const Home = () => {
                 <span className="text-xs sm:text-sm font-bold text-white">LIVE</span>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
                 <img
                   src="https://cdn.boldbi.com/wp/pages/dashboards/retail/retail-stores-performance.png"
                   alt="Retail performance dashboard"
@@ -199,7 +296,7 @@ const Home = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-24"
+            className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6 mb-16 sm:mb-24"
           >
             {stats.map((stat, index) => (
               <motion.div
@@ -209,20 +306,19 @@ const Home = () => {
               >
                 <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-blue-500/20 to-cyan-500/20 rounded-full blur-none transform translate-x-16 -translate-y-16 transition-transform duration-500"></div>
                 <stat.icon className="w-12 h-12 text-blue-600 mb-4" />
-                <div className="text-4xl font-black text-gray-900 mb-2">{stat.value}</div>
-                <div className="text-lg text-gray-600 font-medium">{stat.label}</div>
+                <div className="text-3xl sm:text-4xl font-black text-gray-900 mb-2">{stat.value}</div>
+                <div className="text-base sm:text-lg text-gray-600 font-medium">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-5xl sm:text-6xl font-black text-gray-900 mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4 sm:mb-6">
               About{' '}
               <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
                 3rd Eye Solutions
@@ -239,7 +335,7 @@ const Home = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8"
           >
             {['Mission', 'Vision', 'Values'].map((item, index) => (
               <motion.div
@@ -252,8 +348,10 @@ const Home = () => {
                   <div className="w-16 h-16 rounded-2xl bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center mb-6">
                     <span className="text-3xl font-black text-white">{index + 1}</span>
                   </div>
-                  <h3 className="text-2xl font-black text-blue-600 mb-4">{item}</h3>
-                  <p className="text-gray-700 leading-relaxed">
+                  <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3">
+                    {item}
+                  </h3>
+                  <p className="text-base sm:text-lg text-gray-700 leading-relaxed">
                     {item === 'Mission' && 'To empower retail businesses with intelligent technology that simplifies operations and drives growth.'}
                     {item === 'Vision' && 'To become the leading provider of retail management solutions across India and beyond.'}
                     {item === 'Values' && 'Innovation, integrity, and customer success drive everything we do at 3rd Eye Solutions.'}
@@ -279,7 +377,7 @@ const Home = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-5xl sm:text-6xl font-black text-gray-900 mb-6">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-gray-900 mb-4 sm:mb-6">
               Powerful Features
             </h2>
             <p className="text-xl text-gray-700 max-w-3xl mx-auto">
@@ -292,7 +390,7 @@ const Home = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8"
           >
             {features.map((feature, index) => (
               <motion.div
@@ -308,10 +406,12 @@ const Home = () => {
                 >
                   <feature.icon className="w-10 h-10 text-white" />
                 </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-3">
+                <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-3">
                   {feature.title}
                 </h3>
-                <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+                <p className="text-base sm:text-lg text-gray-600 leading-relaxed">
+                  {feature.description}
+                </p>
                 <motion.div
                   initial={{ width: 0 }}
                   whileInView={{ width: '100%' }}
@@ -326,7 +426,7 @@ const Home = () => {
       </section>
      
 
-      <section className="relative py-24 bg-gradient-to-br from-gray-50 via-white to-blue-50">
+      <section className="relative py-12 sm:py-24 bg-gradient-to-br from-gray-50 via-white to-blue-50">
         {/* Add these decorative circles */}
         <div className="absolute inset-0 pointer-events-none overflow-hidden">
           <div className="absolute top-0 left-0 w-96 h-96 bg-blue-300 rounded-full opacity-20 blur-3xl"></div>
@@ -340,15 +440,15 @@ const Home = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-16"
+            className="text-center mb-8 sm:mb-16"
           >
-            <h2 className="text-5xl sm:text-6xl font-black text-gray-900 mb-6">
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-gray-900 mb-4 sm:mb-6">
               Our{' '}
               <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
                 Store Gallery
               </span>
             </h2>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
+            <p className="text-base sm:text-xl text-gray-700 max-w-3xl mx-auto">
               Take a glimpse at some of the retail stores revolutionizing their business with our solutions
             </p>
           </motion.div>
@@ -358,7 +458,7 @@ const Home = () => {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
           >
             {[
               {
@@ -411,8 +511,12 @@ const Home = () => {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                     <div className="absolute bottom-0 left-0 right-0 p-6 text-white">
-                      <h3 className="text-2xl font-bold mb-2">{store.title}</h3>
-                      <p className="text-sm font-medium">{store.location}</p>
+                      <h3 className="text-xl sm:text-2xl font-bold mb-2">
+                        {store.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm font-medium">
+                        {store.location}
+                      </p>
                     </div>
                   </div>
                 </motion.div>
@@ -421,162 +525,51 @@ const Home = () => {
           </motion.div>
         </div>
       </section>
+<section
+  className="relative py-12 sm:py-24 bg-cover bg-center bg-no-repeat"
+  style={{
+    backgroundImage: `linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), url('https://bcposgroup.com/wp-content/uploads/2021/08/pos-supermarket-.jpg')`,
+  }}
+>
+  {/* Decorative circles */}
+  <div className="absolute inset-0 pointer-events-none overflow-hidden">
+    <div className="absolute -top-20 -left-20 w-96 h-96 bg-blue-200 rounded-full opacity-20 blur-3xl"></div>
+    <div className="absolute top-1/3 right-0 w-80 h-80 bg-cyan-200 rounded-full opacity-20 blur-3xl"></div>
+    <div className="absolute -bottom-20 left-1/3 w-72 h-72 bg-indigo-200 rounded-full opacity-20 blur-3xl"></div>
+  </div>
 
-      <section className="relative py-24 bg-white">
-        {/* Add these decorative circles */}
-        <div className="absolute inset-0 pointer-events-none overflow-hidden">
-          <div className="absolute -top-20 -left-20 w-96 h-96 bg-blue-200 rounded-full opacity-20 blur-3xl"></div>
-          <div className="absolute top-1/3 right-0 w-80 h-80 bg-cyan-200 rounded-full opacity-20 blur-3xl"></div>
-          <div className="absolute -bottom-20 left-1/3 w-72 h-72 bg-indigo-200 rounded-full opacity-20 blur-3xl"></div>
-        </div>
+  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+    <motion.div
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+      className="text-center mb-8 sm:mb-16"
+    >
+      <h2 className="text-4xl sm:text-5xl md:text-6xl font-black text-gray-900 mb-4 sm:mb-6">
+        What Our{' '}
+        <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+          Customers
+        </span>{' '}
+        Say
+      </h2>
+      <p className="text-base sm:text-xl text-gray-700 max-w-3xl mx-auto">
+        Read testimonials from businesses that transformed their operations with our solutions
+      </p>
+    </motion.div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-16"
-          >
-            <h2 className="text-5xl sm:text-6xl font-black text-gray-900 mb-6">
-              What Our{' '}
-              <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
-                Customers
-              </span>{' '}
-              Say
-            </h2>
-            <p className="text-xl text-gray-700 max-w-3xl mx-auto">
-              Read testimonials from businesses that transformed their operations with our solutions
-            </p>
-          </motion.div>
+    <motion.div
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
+    >
+      {companyReviews}
+    </motion.div>
+  </div>
+</section>
 
-          <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-          >
-            {[
-              {
-                name: "Rajesh Kumar",
-                role: "Store Owner, Chennai",
-                image: "https://randomuser.me/api/portraits/men/1.jpg",
-                review: "The billing system has completely streamlined our operations. We've seen a 40% increase in efficiency.",
-                rating: 5
-              },
-              {
-                name: "Priya Sharma",
-                role: "Department Manager, Mumbai",
-                image: "https://randomuser.me/api/portraits/women/2.jpg",
-                review: "Real-time inventory tracking has eliminated stockouts. Customer satisfaction is at an all-time high.",
-                rating: 5
-              },
-              {
-                name: "Amit Patel",
-                role: "Retail Chain Owner, Bangalore",
-                image: "https://randomuser.me/api/portraits/men/3.jpg",
-                review: "Managing multiple stores became effortless. The analytics help us make data-driven decisions.",
-                rating: 4.8
-              },
-              {
-                name: "Sneha Reddy",
-                role: "Operations Head, Hyderabad",
-                image: "https://randomuser.me/api/portraits/women/4.jpg",
-                review: "The GST compliance features save us hours of work. Best investment for our business.",
-                rating: 4.9
-              },
-              {
-                name: "Arjun Singh",
-                role: "Store Manager, Delhi",
-                image: "https://randomuser.me/api/portraits/men/5.jpg",
-                review: "Customer support is exceptional. They're always there when we need them.",
-                rating: 5
-              },
-              {
-                name: "Maya Iyer",
-                role: "Business Owner, Pune",
-                image: "https://randomuser.me/api/portraits/women/6.jpg",
-                review: "The AI insights have helped us optimize our inventory and increase profits significantly.",
-                rating: 4.7
-              },
-              {
-                name: "Vikram Mehta",
-                role: "Retail Director, Ahmedabad",
-                image: "https://randomuser.me/api/portraits/men/7.jpg",
-                review: "Seamless integration with our existing systems. The transition was smooth and effective.",
-                rating: 4.8
-              },
-              {
-                name: "Anita Desai",
-                role: "Finance Manager, Kolkata",
-                image: "https://randomuser.me/api/portraits/women/8.jpg",
-                review: "The automated reporting saves us countless hours. Reconciliation is now a breeze.",
-                rating: 4.9
-              },
-              {
-                name: "Karthik Rajan",
-                role: "Store Owner, Coimbatore",
-                image: "https://randomuser.me/api/portraits/men/9.jpg",
-                review: "Best decision we made for our business. The ROI has been exceptional.",
-                rating: 5
-              },
-              {
-                name: "Lakshmi Menon",
-                role: "Operations Director, Kochi",
-                image: "https://randomuser.me/api/portraits/women/10.jpg",
-                review: "The mobile app allows us to manage operations on the go. Highly recommended!",
-                rating: 4.9
-              }
-            ].map((review, index) => (
-              <motion.div
-                key={review.name}
-                variants={itemVariants}
-                whileHover={{ y: -10, scale: 1.02 }}
-                className="relative p-8 rounded-3xl bg-gradient-to-br from-white to-blue-50 border border-blue-100 shadow-xl hover:shadow-2xl transition-all duration-300"
-              >
-                <div className="flex items-center mb-6">
-                  <img
-                    src={review.image}
-                    alt={review.name}
-                    className="w-16 h-16 rounded-full border-2 border-blue-500 object-cover"
-                    onError={(e) => {
-                      e.target.src = `https://ui-avatars.com/api/?name=${review.name}&background=random`;
-                    }}
-                  />
-                  <div className="ml-4">
-                    <h3 className="text-xl font-bold text-gray-900">{review.name}</h3>
-                    <p className="text-blue-600">{review.role}</p>
-                  </div>
-                </div>
-                <div className="flex items-center mb-4">
-                  {[...Array(5)].map((_, i) => (
-                    <Star
-                      key={i}
-                      className={`w-5 h-5 ${
-                        i < Math.floor(review.rating)
-                          ? "text-yellow-400 fill-yellow-400"
-                          : "text-gray-300"
-                      }`}
-                    />
-                  ))}
-                  <span className="ml-2 text-sm font-bold text-gray-600">
-                    {review.rating}
-                  </span>
-                </div>
-                <p className="text-gray-700 leading-relaxed">{review.review}</p>
-                <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: "100%" }}
-                  viewport={{ once: true }}
-                  transition={{ delay: index * 0.1, duration: 0.8 }}
-                  className="h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mt-6 rounded-full"
-                ></motion.div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
     </div>
   );
 };
