@@ -364,31 +364,29 @@ const Home = () => {
           </motion.div>
         </div>
       </section>
-
-<section className="py-6 sm:py-10 bg-white overflow-hidden flex justify-center">
-  <div className="max-w-[90rem] w-full px-4 sm:px-6 lg:px-10 flex justify-center">
+<section className="py-4 sm:py-6 bg-white overflow-hidden flex justify-center">
+  <div className="max-w-[90rem] w-full px-6 sm:px-8 lg:px-12 flex justify-center">
     {/* Main Hero Block */}
     <motion.div
       initial={{ opacity: 0, scale: 0.97 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
-      className="relative shadow-2xl object-center overflow-hidden rounded-2xl w-full max-w-[1200px]"
+      className="relative shadow-2xl overflow-hidden rounded-2xl w-full max-w-[1200px]"
       style={{
         backgroundImage: `url(${departmentalImg})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',
-        clipPath:
-          'polygon(0 0, calc(100% - 300px) 0, 100% 50%, calc(100% - 300px) 100%, 0 100%)',
+        clipPath: 'polygon(0 0, calc(100% - 300px) 0, 100% 50%, calc(100% - 300px) 100%, 0 100%)',
       }}
     >
       {/* Overlay for readability */}
       <div className="absolute inset-0 bg-black/70"></div>
 
-      <div className="relative flex flex-col lg:grid lg:grid-cols-[480px_1fr] items-stretch min-h-[220px]">
+      <div className="relative flex flex-col lg:grid lg:grid-cols-[400px_1fr] items-stretch min-h-[180px]">
         {/* Left Image */}
-        <div className="w-full h-44 sm:h-60 lg:h-auto">
+        <div className="w-full h-32 sm:h-44 lg:h-auto">
           <img
             src={demoBanner}
             alt="Demo Banner"
@@ -397,27 +395,27 @@ const Home = () => {
         </div>
 
         {/* Right Content */}
-        <div className="flex flex-col justify-center p-5 sm:p-8 lg:py-10 lg:px-14 text-white relative z-10">
-          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 leading-snug max-w-2xl">
+        <div className="flex flex-col justify-center p-4 sm:p-6 lg:py-6 lg:px-10 text-white relative z-10">
+          <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 leading-snug max-w-2xl">
             Empower your business with 3rd Eye Solutions — designed for efficiency and growth.
           </h2>
 
-          <p className="text-sm sm:text-base text-gray-300 mb-6 leading-relaxed max-w-xl">
+          <p className="text-sm sm:text-base text-gray-300 mb-4 leading-relaxed max-w-xl">
             Discover how our smart solutions simplify operations, boost productivity, and drive better results.
           </p>
 
-          <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-5 sm:gap-8">
+          <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-4 sm:gap-6">
             {/* Customers */}
             <div className="text-center sm:text-left">
-              <div className="text-3xl sm:text-4xl font-bold text-white mb-1">500+</div>
+              <div className="text-2xl sm:text-3xl font-bold text-white mb-1">500+</div>
               <div className="text-sm text-gray-400 font-medium">Happy Clients</div>
             </div>
 
             {/* Reviews */}
             <div className="text-center sm:text-left">
               <div className="flex items-center justify-center sm:justify-start gap-2 mb-1">
-                <Star className="w-6 h-6 text-yellow-400 fill-yellow-400" />
-                <span className="text-3xl sm:text-4xl font-bold text-white">4.9</span>
+                <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                <span className="text-2xl sm:text-3xl font-bold text-white">4.9</span>
               </div>
               <div className="text-sm text-gray-400 font-medium">Google Rating</div>
             </div>
@@ -425,7 +423,7 @@ const Home = () => {
             {/* CTA Button */}
             <Link
               to="/contact"
-              className="inline-flex items-center justify-center px-5 py-3 text-sm sm:text-base md:text-lg font-semibold text-white border-2 border-white rounded-full hover:bg-white hover:text-black transition-all duration-300"
+              className="inline-flex items-center justify-center px-4 py-2 sm:px-5 sm:py-3 text-sm sm:text-base font-semibold text-white border-2 border-white rounded-full hover:bg-white hover:text-black transition-all duration-300"
             >
               Schedule a free demo
             </Link>
@@ -435,6 +433,7 @@ const Home = () => {
     </motion.div>
   </div>
 </section>
+
 
 
 
