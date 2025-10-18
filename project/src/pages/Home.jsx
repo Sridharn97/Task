@@ -2,6 +2,9 @@ import { motion, useScroll, useTransform } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Zap, Package, FileText, BarChart3, Sparkles, TrendingUp, Shield } from 'lucide-react';
 import { Star } from 'lucide-react';
+import departmentalImg from '../assests/Departmental.jpg';
+import demoBanner from '../assests/demo-banner.png';
+
 
 
 const Home = () => {
@@ -362,35 +365,22 @@ const Home = () => {
         </div>
       </section>
 
-<section className="py-6 sm:py-10 bg-white overflow-hidden">
-  <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-10">
-    {/* Top Badge */}
-    <motion.div
-      initial={{ opacity: 0, y: -20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className="text-center mb-6 sm:mb-8"
-    >
-      <span className="text-base sm:text-lg md:text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-blue-600">
-        Book your free demo today!
-      </span>
-    </motion.div>
-
+<section className="py-6 sm:py-10 bg-white overflow-hidden flex justify-center">
+  <div className="max-w-[90rem] w-full px-4 sm:px-6 lg:px-10 flex justify-center">
     {/* Main Hero Block */}
     <motion.div
       initial={{ opacity: 0, scale: 0.97 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8 }}
-      className="relative shadow-2xl object-center overflow-hidden rounded-2xl"
+      className="relative shadow-2xl object-center overflow-hidden rounded-2xl w-full max-w-[1200px]"
       style={{
-        backgroundImage: "url('/public/Departmental.jpg')",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundRepeat: "no-repeat",
+        backgroundImage: `url(${departmentalImg})`,
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat',
         clipPath:
-          "polygon(0 0, calc(100% - 300px) 0, 100% 50%, calc(100% - 300px) 100%, 0 100%)",
+          'polygon(0 0, calc(100% - 300px) 0, 100% 50%, calc(100% - 300px) 100%, 0 100%)',
       }}
     >
       {/* Overlay for readability */}
@@ -400,7 +390,7 @@ const Home = () => {
         {/* Left Image */}
         <div className="w-full h-44 sm:h-60 lg:h-auto">
           <img
-            src="/public/demo-banner.png"
+            src={demoBanner}
             alt="Demo Banner"
             className="h-full w-full object-cover object-center"
           />
@@ -445,7 +435,6 @@ const Home = () => {
     </motion.div>
   </div>
 </section>
-
 
 
 
