@@ -133,8 +133,8 @@ const Home = () => {
               <Star
                 key={i}
                 className={`w-5 h-5 ${i < Math.floor(review.rating)
-                    ? "text-yellow-400 fill-yellow-400"
-                    : "text-gray-300"
+                  ? "text-yellow-400 fill-yellow-400"
+                  : "text-gray-300"
                   }`}
               />
             ))}
@@ -362,6 +362,93 @@ const Home = () => {
         </div>
       </section>
 
+<section className="py-6 sm:py-10 bg-white overflow-hidden">
+  <div className="max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-10">
+    {/* Top Badge */}
+    <motion.div
+      initial={{ opacity: 0, y: -20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.6 }}
+      className="text-center mb-6 sm:mb-8"
+    >
+      <span className="text-base sm:text-lg md:text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-blue-600">
+        Book your free demo today!
+      </span>
+    </motion.div>
+
+    {/* Main Hero Block */}
+    <motion.div
+      initial={{ opacity: 0, scale: 0.97 }}
+      whileInView={{ opacity: 1, scale: 1 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.8 }}
+      className="relative shadow-2xl object-center overflow-hidden rounded-2xl"
+      style={{
+        backgroundImage: "url('/public/Departmental.jpg')",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundRepeat: "no-repeat",
+        clipPath:
+          "polygon(0 0, calc(100% - 300px) 0, 100% 50%, calc(100% - 300px) 100%, 0 100%)",
+      }}
+    >
+      {/* Overlay for readability */}
+      <div className="absolute inset-0 bg-black/70"></div>
+
+      <div className="relative flex flex-col lg:grid lg:grid-cols-[480px_1fr] items-stretch min-h-[220px]">
+        {/* Left Image */}
+        <div className="w-full h-44 sm:h-60 lg:h-auto">
+          <img
+            src="/public/demo-banner.png"
+            alt="Demo Banner"
+            className="h-full w-full object-cover object-center"
+          />
+        </div>
+
+        {/* Right Content */}
+        <div className="flex flex-col justify-center p-5 sm:p-8 lg:py-10 lg:px-14 text-white relative z-10">
+          <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold mb-3 leading-snug max-w-2xl">
+            Empower your business with 3rd Eye Solutions — designed for efficiency and growth.
+          </h2>
+
+          <p className="text-sm sm:text-base text-gray-300 mb-6 leading-relaxed max-w-xl">
+            Discover how our smart solutions simplify operations, boost productivity, and drive better results.
+          </p>
+
+          <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-5 sm:gap-8">
+            {/* Customers */}
+            <div className="text-center sm:text-left">
+              <div className="text-3xl sm:text-4xl font-bold text-white mb-1">500+</div>
+              <div className="text-sm text-gray-400 font-medium">Happy Clients</div>
+            </div>
+
+            {/* Reviews */}
+            <div className="text-center sm:text-left">
+              <div className="flex items-center justify-center sm:justify-start gap-2 mb-1">
+                <Star className="w-6 h-6 text-yellow-400 fill-yellow-400" />
+                <span className="text-3xl sm:text-4xl font-bold text-white">4.9</span>
+              </div>
+              <div className="text-sm text-gray-400 font-medium">Google Rating</div>
+            </div>
+
+            {/* CTA Button */}
+            <Link
+              to="/contact"
+              className="inline-flex items-center justify-center px-5 py-3 text-sm sm:text-base md:text-lg font-semibold text-white border-2 border-white rounded-full hover:bg-white hover:text-black transition-all duration-300"
+            >
+              Schedule a free demo
+            </Link>
+          </div>
+        </div>
+      </div>
+    </motion.div>
+  </div>
+</section>
+
+
+
+
       <section className="relative py-24 bg-gradient-to-br from-gray-50 via-blue-50 to-cyan-50 overflow-hidden">
         <div className="absolute inset-0 opacity-30">
           <div className="absolute top-0 left-0 w-96 h-96 bg-blue-300 rounded-full"></div>
@@ -524,136 +611,137 @@ const Home = () => {
           </motion.div>
         </div>
       </section>
+
       <section className="py-20 bg-white">
-  <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-    {/* Heading */}
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true }}
-      transition={{ duration: 0.6 }}
-      className="mb-12"
-    >
-      <h3 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 mb-3">
-        Our{" "}
-        <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
-          Clients
-        </span>
-      </h3>
-      <p className="text-lg sm:text-xl text-gray-700 mt-3 font-medium">
-        Powering the world’s most innovative companies.
-      </p>
-      <p className="text-base sm:text-lg text-gray-600 mt-1">
-        From next-gen startups to global enterprises.
-      </p>
-    </motion.div>
-
-    {/* Infinite Scrolling Logos */}
-   <div className="overflow-hidden relative py-20 bg-gray-50">
-  {/* Top Row (moves left) */}
-  <motion.div
-    className="flex gap-12 mb-12"
-    animate={{ x: [0, "-50%"] }}
-    transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
-    style={{ width: "max-content" }}
-  >
-    {[...Array(2)].map((_, setIndex) => (
-      <div key={setIndex} className="flex gap-12">
-        {[
-          { src: "https://cdn-icons-png.flaticon.com/512/5968/5968854.png", name: "Google" },
-          { src: "https://cdn-icons-png.flaticon.com/512/733/733579.png", name: "Twitter" },
-          { src: "https://cdn-icons-png.flaticon.com/512/5968/5968764.png", name: "LinkedIn" },
-          { src: "https://cdn-icons-png.flaticon.com/512/5968/5968773.png", name: "YouTube" },
-          { src: "https://cdn-icons-png.flaticon.com/512/5968/5968899.png", name: "Instagram" },
-        ].map((item, i) => (
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          {/* Heading */}
           <motion.div
-            key={`${setIndex}-${i}`}
-            className="flex-shrink-0 w-40 md:w-48 flex flex-col items-center justify-center"
-            whileHover={{
-              scale: 1.1,
-              y: -8,
-              transition: { duration: 0.4, ease: "easeInOut" },
-            }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="mb-12"
           >
-            <div className="bg-white rounded-2xl p-6 shadow-lg w-full h-32 flex items-center justify-center hover:shadow-2xl transition-all duration-500">
-              <img
-                src={item.src}
-                alt={item.name}
-                className="max-h-20 object-contain filter grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
-              />
-            </div>
-            <p className="text-center text-gray-700 font-medium mt-3 text-sm">
-              {item.name}
+            <h3 className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-gray-900 mb-3">
+              Our{" "}
+              <span className="bg-gradient-to-r from-blue-600 to-cyan-500 bg-clip-text text-transparent">
+                Clients
+              </span>
+            </h3>
+            <p className="text-lg sm:text-xl text-gray-700 mt-3 font-medium">
+              Powering the world’s most innovative companies.
+            </p>
+            <p className="text-base sm:text-lg text-gray-600 mt-1">
+              From next-gen startups to global enterprises.
             </p>
           </motion.div>
-        ))}
-      </div>
-    ))}
-  </motion.div>
 
-  {/* Bottom Row (moves right to left) */}
-  <motion.div
-    className="flex gap-12"
-    animate={{ x: ["-50%", 0] }}
-    transition={{ repeat: Infinity, duration: 35, ease: "linear" }}
-    style={{ width: "max-content" }}
-  >
-    {[...Array(2)].map((_, setIndex) => (
-      <div key={setIndex} className="flex gap-12">
-        {[
-          { src: "https://cdn-icons-png.flaticon.com/512/5968/5968841.png", name: "Amazon" },
-          { src: "https://cdn-icons-png.flaticon.com/512/732/732221.png", name: "Adobe" },
-          { src: "https://cdn-icons-png.flaticon.com/512/174/174872.png", name: "Dribbble" },
-          { src: "https://cdn-icons-png.flaticon.com/512/174/174857.png", name: "Behance" },
-          { src: "https://cdn-icons-png.flaticon.com/512/733/733547.png", name: "Facebook" },
-        ].map((item, i) => (
+          {/* Infinite Scrolling Logos */}
+          <div className="overflow-hidden relative py-20 bg-white-50">
+            {/* Top Row (moves left) */}
+            <motion.div
+              className="flex gap-12 mb-12"
+              animate={{ x: [0, "-50%"] }}
+              transition={{ repeat: Infinity, duration: 30, ease: "linear" }}
+              style={{ width: "max-content" }}
+            >
+              {[...Array(2)].map((_, setIndex) => (
+                <div key={setIndex} className="flex gap-12">
+                  {[
+                    { src: "https://cdn-icons-png.flaticon.com/512/5968/5968854.png", name: "Google" },
+                    { src: "https://cdn-icons-png.flaticon.com/512/733/733579.png", name: "Twitter" },
+                    { src: "https://cdn-icons-png.flaticon.com/512/5968/5968764.png", name: "LinkedIn" },
+                    { src: "https://cdn-icons-png.flaticon.com/512/5968/5968773.png", name: "YouTube" },
+                    { src: "https://cdn-icons-png.flaticon.com/512/5968/5968899.png", name: "Instagram" },
+                  ].map((item, i) => (
+                    <motion.div
+                      key={`${setIndex}-${i}`}
+                      className="flex-shrink-0 w-40 md:w-48 flex flex-col items-center justify-center"
+                      whileHover={{
+                        scale: 1.1,
+                        y: -8,
+                        transition: { duration: 0.4, ease: "easeInOut" },
+                      }}
+                    >
+                      <div className="bg-white rounded-2xl p-6 shadow-lg w-full h-32 flex items-center justify-center hover:shadow-2xl transition-all duration-500">
+                        <img
+                          src={item.src}
+                          alt={item.name}
+                          className="max-h-20 object-contain filter grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                        />
+                      </div>
+                      <p className="text-center text-gray-700 font-medium mt-3 text-sm">
+                        {item.name}
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
+              ))}
+            </motion.div>
+
+            {/* Bottom Row (moves right to left) */}
+            <motion.div
+              className="flex gap-12"
+              animate={{ x: ["-50%", 0] }}
+              transition={{ repeat: Infinity, duration: 35, ease: "linear" }}
+              style={{ width: "max-content" }}
+            >
+              {[...Array(2)].map((_, setIndex) => (
+                <div key={setIndex} className="flex gap-12">
+                  {[
+                    { src: "https://cdn-icons-png.flaticon.com/512/5968/5968841.png", name: "Amazon" },
+                    { src: "https://cdn-icons-png.flaticon.com/512/732/732221.png", name: "Adobe" },
+                    { src: "https://cdn-icons-png.flaticon.com/512/174/174872.png", name: "Dribbble" },
+                    { src: "https://cdn-icons-png.flaticon.com/512/174/174857.png", name: "Behance" },
+                    { src: "https://cdn-icons-png.flaticon.com/512/733/733547.png", name: "Facebook" },
+                  ].map((item, i) => (
+                    <motion.div
+                      key={`${setIndex}-${i}`}
+                      className="flex-shrink-0 w-40 md:w-48 flex flex-col items-center justify-center"
+                      whileHover={{
+                        scale: 1.1,
+                        y: -8,
+                        transition: { duration: 0.4, ease: "easeInOut" },
+                      }}
+                    >
+                      <div className="bg-white rounded-2xl p-6 shadow-lg w-full h-32 flex items-center justify-center hover:shadow-2xl transition-all duration-500">
+                        <img
+                          src={item.src}
+                          alt={item.name}
+                          className="max-h-20 object-contain filter grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
+                        />
+                      </div>
+                      <p className="text-center text-gray-700 font-medium mt-3 text-sm">
+                        {item.name}
+                      </p>
+                    </motion.div>
+                  ))}
+                </div>
+              ))}
+            </motion.div>
+          </div>
+
+
+          {/* Text Below Logos */}
           <motion.div
-            key={`${setIndex}-${i}`}
-            className="flex-shrink-0 w-40 md:w-48 flex flex-col items-center justify-center"
-            whileHover={{
-              scale: 1.1,
-              y: -8,
-              transition: { duration: 0.4, ease: "easeInOut" },
-            }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="mt-12 space-y-3 text-gray-700"
           >
-            <div className="bg-white rounded-2xl p-6 shadow-lg w-full h-32 flex items-center justify-center hover:shadow-2xl transition-all duration-500">
-              <img
-                src={item.src}
-                alt={item.name}
-                className="max-h-20 object-contain filter grayscale opacity-80 hover:grayscale-0 hover:opacity-100 transition-all duration-500"
-              />
-            </div>
-            <p className="text-center text-gray-700 font-medium mt-3 text-sm">
-              {item.name}
+            <p className="text-lg font-medium">
+              Trusted by industry leaders across retail, technology, and innovation.
+            </p>
+            <p className="text-base text-gray-600">
+              Empowering businesses to achieve excellence through collaboration.
+            </p>
+            <p className="text-base text-gray-600">
+              Together, we’re building the future — one partnership at a time.
             </p>
           </motion.div>
-        ))}
-      </div>
-    ))}
-  </motion.div>
-</div>
-
-
-    {/* Text Below Logos */}
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.8 }}
-      viewport={{ once: true }}
-      className="mt-12 space-y-3 text-gray-700"
-    >
-      <p className="text-lg font-medium">
-        Trusted by industry leaders across retail, technology, and innovation.
-      </p>
-      <p className="text-base text-gray-600">
-        Empowering businesses to achieve excellence through collaboration.
-      </p>
-      <p className="text-base text-gray-600">
-        Together, we’re building the future — one partnership at a time.
-      </p>
-    </motion.div>
-  </div>
-</section>
+        </div>
+      </section>
 
       <section
         className="relative py-12 sm:py-24 bg-cover bg-center bg-no-repeat"
