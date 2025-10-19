@@ -4,6 +4,7 @@ import { Zap, Package, FileText, BarChart3, Sparkles, TrendingUp, Shield } from 
 import { Star } from 'lucide-react';
 import departmentalImg from '../assests/Departmental.jpg';
 import demoBanner from '../assests/demo-banner.png';
+import DemoPopup from '../components/DemoPopup';
 
 
 
@@ -162,7 +163,9 @@ const Home = () => {
   ));
 
   return (
+   
     <div className="min-h-screen overflow-hidden">
+      <DemoPopup />
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden py-12 sm:py-24">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-cyan-50 to-blue-100"></div>
 

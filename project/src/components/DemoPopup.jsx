@@ -1,0 +1,189 @@
+import { useState, useEffect } from 'react';
+import { X } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
+
+export default function DemoPopup() {
+  const [isOpen, setIsOpen] = useState(false);
+  const [formData, setFormData] = useState({
+    name: '',
+    businessName: '',
+    phone: '',
+    city: '',
+    consent: false,
+  });
+
+  useEffect(() => {
+    const timer = setTimeout(() => setIsOpen(true), 1000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  const handleChange = (e) => {
+    const { name, value, type, checked } = e.target;
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : value
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    alert('Demo request submitted! We will contact you soon.');
+    setIsOpen(false);
+  };
+
+  return (
+    <AnimatePresence>
+      {isOpen && (
+        <>
+          {/* Backdrop */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setIsOpen(false)}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-40"
+          />
+
+          {/* Popup */}
+          <motion.div
+            initial={{ opacity: 0, scale: 0.85, y: 50 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 50 }}
+            transition={{ duration: 0.4, ease: 'easeOut' }}
+            className="fixed inset-0 flex items-center justify-center z-50 p-4"
+          >
+            <div className="bg-white rounded-3xl shadow-2xl max-w-3xl w-full overflow-hidden relative flex flex-col md:flex-row">
+              
+              {/* Left Section */}
+              <motion.div
+                initial={{ opacity: 0, x: -40 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.2 }}
+                className="md:w-1/2 bg-gradient-to-br from-blue-500 to-indigo-600 text-white flex flex-col items-center justify-center p-8 relative"
+              >
+                {/* Floating offer badge */}
+                <motion.div
+                  animate={{ y: [0, -8, 0] }}
+                  transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                  className="bg-yellow-400 text-blue-900 font-bold px-4 py-2 rounded-full text-sm mb-4 shadow-lg"
+                >
+                  🎁 Get 1-Month Free Trial
+                </motion.div>
+
+                <div className="text-center space-y-4">
+                  <h2 className="text-3xl font-bold tracking-tight">3rd Eye Smart Billing</h2>
+                  <p className="text-sm opacity-90">
+                    Simplify your billing, grow your business effortlessly.
+                  </p>
+                </div>
+
+                <div className="mt-8 flex gap-3">
+                  <div className="w-4 h-4 bg-orange-400 rounded-full shadow-md" />
+                  <div className="w-4 h-4 bg-orange-500 rounded-full shadow-md" />
+                  <div className="w-4 h-4 bg-orange-400 rounded-full shadow-md" />
+                </div>
+              </motion.div>
+
+              {/* Right Section */}
+              <div className="md:w-1/2 p-6 md:p-8 flex flex-col justify-center relative">
+                {/* Close Button */}
+                <button
+                  onClick={() => setIsOpen(false)}
+                  className="absolute top-4 right-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full p-2 transition"
+                >
+                  <X size={20} />
+                </button>
+
+                <div className="mb-6">
+                  <h3 className="text-2xl font-bold text-blue-600 mb-1">Book Your Free Demo</h3>
+                  <p className="text-gray-500 text-sm">
+                    Experience the smarter way to handle billing & inventory.
+                  </p>
+                </div>
+
+                <form onSubmit={handleSubmit} className="space-y-4">
+                  <input
+                    type="text"
+                    name="name"
+                    placeholder="Full Name *"
+                    value={formData.name}
+                    onChange={handleChange}
+                    className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                  />
+
+                  <input
+                    type="text"
+                    name="businessName"
+                    placeholder="Business Name *"
+                    value={formData.businessName}
+                    onChange={handleChange}
+                    className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                  />
+
+                  <div className="flex gap-2">
+                    <input
+                      type="text"
+                      value="+91"
+                      disabled
+                      className="w-16 text-center border border-gray-300 rounded-lg bg-gray-100 text-sm font-medium"
+                    />
+                    <input
+                      type="tel"
+                      name="phone"
+                      placeholder="Contact Number *"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      className="flex-1 border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                    />
+                  </div>
+
+                  <input
+                    type="text"
+                    name="city"
+                    placeholder="City *"
+                    value={formData.city}
+                    onChange={handleChange}
+                    className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+                  />
+
+                  <div className="flex items-start gap-3 text-xs text-gray-600">
+                    <input
+                      type="checkbox"
+                      name="consent"
+                      checked={formData.consent}
+                      onChange={handleChange}
+                      className="w-4 h-4 mt-1 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                    />
+                    <label>
+                      I agree to receive communications from 3rd Eye Solutions about offers,
+                      updates, and demos.
+                    </label>
+                  </div>
+
+                  <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    type="submit"
+                    className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold py-3 rounded-lg shadow-lg transition-all"
+                  >
+                    🚀 Book Free Demo
+                  </motion.button>
+
+                  {/* Offer Highlight */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="mt-4 text-center text-sm text-gray-600 bg-blue-50 py-2 rounded-lg"
+                  >
+                    🎉 Limited Offer: Free setup + 24/7 support for early subscribers!
+                  </motion.div>
+                </form>
+              </div>
+            </div>
+          </motion.div>
+        </>
+      )}
+    </AnimatePresence>
+  );
+}
