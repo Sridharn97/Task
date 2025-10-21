@@ -1,6 +1,8 @@
 import { useState, useEffect } from 'react';
 import { X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import billing from "../assests/billing.png";
+
 
 export default function DemoPopup() {
   const [isOpen, setIsOpen] = useState(false);
@@ -19,9 +21,9 @@ export default function DemoPopup() {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === 'checkbox' ? checked : value,
     }));
   };
 
@@ -54,33 +56,39 @@ export default function DemoPopup() {
           >
             <div className="bg-white rounded-3xl shadow-2xl max-w-3xl w-full overflow-hidden relative flex flex-col md:flex-row">
               
-              {/* Left Section */}
+              {/* Left Section with background image */}
               <motion.div
                 initial={{ opacity: 0, x: -40 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
-                className="md:w-1/2 bg-gradient-to-br from-blue-500 to-indigo-600 text-white flex flex-col items-center justify-center p-8 relative"
+                className="md:w-1/2 bg-cover bg-center text-white flex flex-col items-center justify-center p-8 relative"
+                style={{
+                  backgroundImage: `url(${billing})`,
+                  backgroundRepeat: 'no-repeat',
+                }}
               >
-                {/* Floating offer badge */}
-                <motion.div
-                  animate={{ y: [0, -8, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
-                  className="bg-yellow-400 text-blue-900 font-bold px-4 py-2 rounded-full text-sm mb-4 shadow-lg"
-                >
-                  🎁 Get 1-Month Free Trial
-                </motion.div>
+                {/* Overlay for better text visibility */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/70 to-indigo-700/60"></div>
 
-                <div className="text-center space-y-4">
+                <div className="relative z-10 text-center space-y-4">
+                  <motion.div
+                    animate={{ y: [0, -8, 0] }}
+                    transition={{ duration: 3, repeat: Infinity, ease: 'easeInOut' }}
+                    className="bg-yellow-400 text-blue-900 font-bold px-4 py-2 rounded-full text-sm mb-4 shadow-lg inline-block"
+                  >
+                    🎁 Get 1-Month Free Trial
+                  </motion.div>
+
                   <h2 className="text-3xl font-bold tracking-tight">3rd Eye Smart Billing</h2>
                   <p className="text-sm opacity-90">
                     Simplify your billing, grow your business effortlessly.
                   </p>
-                </div>
 
-                <div className="mt-8 flex gap-3">
-                  <div className="w-4 h-4 bg-orange-400 rounded-full shadow-md" />
-                  <div className="w-4 h-4 bg-orange-500 rounded-full shadow-md" />
-                  <div className="w-4 h-4 bg-orange-400 rounded-full shadow-md" />
+                  <div className="mt-8 flex justify-center gap-3">
+                    <div className="w-4 h-4 bg-orange-400 rounded-full shadow-md" />
+                    <div className="w-4 h-4 bg-orange-500 rounded-full shadow-md" />
+                    <div className="w-4 h-4 bg-orange-400 rounded-full shadow-md" />
+                  </div>
                 </div>
               </motion.div>
 
