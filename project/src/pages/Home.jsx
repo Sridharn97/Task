@@ -372,22 +372,22 @@ const Home = () => {
 
       <section className="py-4 sm:py-6 bg-white overflow-hidden flex justify-center">
         <div className="max-w-[90rem] w-full px-6 sm:px-8 lg:px-12 flex justify-center">
-         <motion.div
-  initial={{ opacity: 0, scale: 0.97 }}
-  whileInView={{ opacity: 1, scale: 1 }}
-  viewport={{ once: true }}
-  transition={{ duration: 0.8 }}
-  className="relative shadow-2xl overflow-hidden rounded-2xl w-full max-w-[1200px] responsive-clip"
-  style={{
-    backgroundImage: `url(${departmentalImg})`,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-  }}
->
-  {/* Responsive clip-path styling */}
-  <style>
-    {`
+          <motion.div
+            initial={{ opacity: 0, scale: 0.97 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="relative shadow-2xl overflow-hidden rounded-2xl w-full max-w-[1200px] responsive-clip"
+            style={{
+              backgroundImage: `url(${departmentalImg})`,
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+            }}
+          >
+            {/* Responsive clip-path styling */}
+            <style>
+              {`
       .responsive-clip {
         clip-path: polygon(0 0, calc(100% - 200px) 0, 100% 50%, calc(100% - 200px) 100%, 0 100%);
       }
@@ -405,58 +405,58 @@ const Home = () => {
         }
       }
     `}
-  </style>
+            </style>
 
-  <div className="absolute inset-0 bg-black/70"></div>
+            <div className="absolute inset-0 bg-black/70"></div>
 
-  {/* Content wrapper */}
-  <div className="relative flex flex-col lg:grid lg:grid-cols-[400px_1fr] items-stretch min-h-[180px]">
-    {/* Image Section */}
-    <div className="w-full h-40 sm:h-48 lg:h-auto">
-      <img
-        src={demoBanner}
-        alt="Demo Banner"
-        className="h-full w-full object-cover object-center"
-      />
-    </div>
+            {/* Content wrapper */}
+            <div className="relative flex flex-col lg:grid lg:grid-cols-[400px_1fr] items-stretch min-h-[180px]">
+              {/* Image Section */}
+              <div className="w-full h-40 sm:h-48 lg:h-auto">
+                <img
+                  src={demoBanner}
+                  alt="Demo Banner"
+                  className="h-full w-full object-cover object-center"
+                />
+              </div>
 
-    {/* Text Section */}
-    <div className="flex flex-col justify-center p-4 sm:p-6 lg:py-6 lg:px-10 text-white z-10">
-      <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 leading-snug max-w-2xl">
-        Empower your business with 3rd Eye Solutions — designed for efficiency and growth.
-      </h2>
+              {/* Text Section */}
+              <div className="flex flex-col justify-center p-4 sm:p-6 lg:py-6 lg:px-10 text-white z-10">
+                <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold mb-2 leading-snug max-w-2xl">
+                  Empower your business with 3rd Eye Solutions — designed for efficiency and growth.
+                </h2>
 
-      <p className="text-sm sm:text-base text-gray-300 mb-4 leading-relaxed max-w-xl">
-        Discover how our smart solutions simplify operations, boost productivity, and drive better results.
-      </p>
+                <p className="text-sm sm:text-base text-gray-300 mb-4 leading-relaxed max-w-xl">
+                  Discover how our smart solutions simplify operations, boost productivity, and drive better results.
+                </p>
 
-      <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-4 sm:gap-6">
-        {/* Clients */}
-        <div className="text-center sm:text-left">
-          <div className="text-2xl sm:text-3xl font-bold text-white mb-1">500+</div>
-          <div className="text-sm text-gray-400 font-medium">Happy Clients</div>
-        </div>
+                <div className="flex flex-col sm:flex-row sm:flex-wrap items-start sm:items-center gap-4 sm:gap-6">
+                  {/* Clients */}
+                  <div className="text-center sm:text-left">
+                    <div className="text-2xl sm:text-3xl font-bold text-white mb-1">500+</div>
+                    <div className="text-sm text-gray-400 font-medium">Happy Clients</div>
+                  </div>
 
-        {/* Rating */}
-        <div className="text-center sm:text-left">
-          <div className="flex items-center justify-center sm:justify-start gap-2 mb-1">
-            <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
-            <span className="text-2xl sm:text-3xl font-bold text-white">4.9</span>
-          </div>
-          <div className="text-sm text-gray-400 font-medium">Google Rating</div>
-        </div>
+                  {/* Rating */}
+                  <div className="text-center sm:text-left">
+                    <div className="flex items-center justify-center sm:justify-start gap-2 mb-1">
+                      <Star className="w-5 h-5 text-yellow-400 fill-yellow-400" />
+                      <span className="text-2xl sm:text-3xl font-bold text-white">4.9</span>
+                    </div>
+                    <div className="text-sm text-gray-400 font-medium">Google Rating</div>
+                  </div>
 
-        {/* CTA */}
-        <Link
-          to="/contact"
-          className="inline-flex items-center justify-center px-4 py-2 sm:px-5 sm:py-3 text-sm sm:text-base font-semibold text-white border-2 border-white rounded-full hover:bg-white hover:text-black transition-all duration-300"
-        >
-          Schedule a free demo
-        </Link>
-      </div>
-    </div>
-  </div>
-</motion.div>
+                  {/* CTA */}
+                  <Link
+                    to="/contact"
+                    className="inline-flex items-center justify-center px-4 py-2 sm:px-5 sm:py-3 text-sm sm:text-base font-semibold text-white border-2 border-white rounded-full hover:bg-white hover:text-black transition-all duration-300"
+                  >
+                    Schedule a free demo
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </motion.div>
 
         </div>
       </section>
