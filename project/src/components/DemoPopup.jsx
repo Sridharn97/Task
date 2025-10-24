@@ -3,11 +3,9 @@ import { X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import billing from "../assests/billing.png";
 
+
 export default function DemoPopup() {
   const [isOpen, setIsOpen] = useState(false);
-  const [loading, setLoading] = useState(false);
-  const [message, setMessage] = useState("");
-
   const [formData, setFormData] = useState({
     name: '',
     businessName: '',
@@ -23,43 +21,42 @@ export default function DemoPopup() {
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
+    setFormData((prev) => ({
       ...prev,
-      [name]: type === 'checkbox' ? checked : value
+      [name]: type === 'checkbox' ? checked : value,
     }));
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setMessage("");
+const handleSubmit = async (e) => {
+  e.preventDefault();
 
-    const scriptURL =
-      "https://script.google.com/macros/s/AKfycbxF3L99tgwNVX4EAKFx4twlaFeVTzjw0-G8Fdy6p6YZbwE39EC7hmTqnUIebLRcdMyC/exec";
+  const scriptURL = "https://script.google.com/macros/s/AKfycbyPTrYaajhSHXBKtMN6gDQ7HrOsr63gminQH04E8mfql3C1-uYH_5mDFxdYmpumvMrT/exec"; // Paste the Apps Script URL here
 
-    try {
-      const response = await fetch(scriptURL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+  try {
+    const response = await fetch(scriptURL, {
+      method: "POST",
+      mode: "no-cors", // Important for CORS-less Sheets API
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
 
-      const result = await response.json();
+    alert("✅ Demo request submitted! We’ll contact you soon.");
+    setIsOpen(false);
+    setFormData({
+      name: "",
+      businessName: "",
+      phone: "",
+      city: "",
+      consent: false,
+    });
+  } catch (error) {
+    console.error("Error submitting form:", error);
+    alert("❌ Submission failed. Please try again.");
+  }
+};
 
-      if (result.result === "success") {
-        setMessage("✅ Demo request submitted successfully!");
-        setFormData({ name: '', businessName: '', phone: '', city: '', consent: false });
-        setIsOpen(false);
-      } else {
-        setMessage("❌ Failed to submit: " + result.message);
-      }
-    } catch (error) {
-      console.error(error);
-      setMessage("⚠️ Unable to connect to server. Check internet or script permissions.");
-    }
-
-    setLoading(false);
-  };
 
   return (
     <AnimatePresence>
@@ -84,15 +81,20 @@ export default function DemoPopup() {
           >
             <div className="bg-white rounded-3xl shadow-2xl max-w-3xl w-full overflow-hidden relative flex flex-col md:flex-row">
               
-              {/* Left Section */}
+              {/* Left Section with background image */}
               <motion.div
                 initial={{ opacity: 0, x: -40 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.2 }}
                 className="md:w-1/2 bg-cover bg-center text-white flex flex-col items-center justify-center p-8 relative"
-                style={{ backgroundImage: `url(${billing})`, backgroundRepeat: 'no-repeat' }}
+                style={{
+                  backgroundImage: `url(${billing})`,
+                  backgroundRepeat: 'no-repeat',
+                }}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/70 to-indigo-700/60" />
+                {/* Overlay for better text visibility */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-600/70 to-indigo-700/60"></div>
+
                 <div className="relative z-10 text-center space-y-4">
                   <motion.div
                     animate={{ y: [0, -8, 0] }}
@@ -103,7 +105,9 @@ export default function DemoPopup() {
                   </motion.div>
 
                   <h2 className="text-3xl font-bold tracking-tight">3rd Eye Smart Billing</h2>
-                  <p className="text-sm opacity-90">Simplify your billing, grow your business effortlessly.</p>
+                  <p className="text-sm opacity-90">
+                    Simplify your billing, grow your business effortlessly.
+                  </p>
 
                   <div className="mt-8 flex justify-center gap-3">
                     <div className="w-4 h-4 bg-orange-400 rounded-full shadow-md" />
@@ -115,6 +119,7 @@ export default function DemoPopup() {
 
               {/* Right Section */}
               <div className="md:w-1/2 p-6 md:p-8 flex flex-col justify-center relative">
+                {/* Close Button */}
                 <button
                   onClick={() => setIsOpen(false)}
                   className="absolute top-4 right-4 bg-gray-100 hover:bg-gray-200 text-gray-700 rounded-full p-2 transition"
@@ -124,7 +129,9 @@ export default function DemoPopup() {
 
                 <div className="mb-6">
                   <h3 className="text-2xl font-bold text-blue-600 mb-1">Book Your Free Demo</h3>
-                  <p className="text-gray-500 text-sm">Experience the smarter way to handle billing & inventory.</p>
+                  <p className="text-gray-500 text-sm">
+                    Experience the smarter way to handle billing & inventory.
+                  </p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
@@ -135,7 +142,6 @@ export default function DemoPopup() {
                     value={formData.name}
                     onChange={handleChange}
                     className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
-                    required
                   />
 
                   <input
@@ -161,7 +167,6 @@ export default function DemoPopup() {
                       value={formData.phone}
                       onChange={handleChange}
                       className="flex-1 border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
-                      required
                     />
                   </div>
 
@@ -183,7 +188,8 @@ export default function DemoPopup() {
                       className="w-4 h-4 mt-1 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                     />
                     <label>
-                      I agree to receive communications from 3rd Eye Solutions about offers, updates, and demos.
+                      I agree to receive communications from 3rd Eye Solutions about offers,
+                      updates, and demos.
                     </label>
                   </div>
 
@@ -192,21 +198,19 @@ export default function DemoPopup() {
                     whileTap={{ scale: 0.95 }}
                     type="submit"
                     className="w-full bg-gradient-to-r from-blue-500 to-indigo-600 text-white font-semibold py-3 rounded-lg shadow-lg transition-all"
-                    disabled={loading}
                   >
-                    {loading ? "Submitting..." : "🚀 Book Free Demo"}
+                    🚀 Book Free Demo
                   </motion.button>
 
-                  {message && (
-                    <motion.div
-                      initial={{ opacity: 0, y: 10 }}
-                      animate={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.3 }}
-                      className="mt-4 text-center text-sm text-gray-600 bg-blue-50 py-2 rounded-lg"
-                    >
-                      {message}
-                    </motion.div>
-                  )}
+                  {/* Offer Highlight */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="mt-4 text-center text-sm text-gray-600 bg-blue-50 py-2 rounded-lg"
+                  >
+                    🎉 Limited Offer: Free setup + 24/7 support for early subscribers!
+                  </motion.div>
                 </form>
               </div>
             </div>
