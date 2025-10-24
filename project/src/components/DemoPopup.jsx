@@ -27,35 +27,35 @@ export default function DemoPopup() {
     }));
   };
 
-const handleSubmit = async (e) => {
-  e.preventDefault();
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-  const scriptURL = "https://script.google.com/macros/s/AKfycbyPTrYaajhSHXBKtMN6gDQ7HrOsr63gminQH04E8mfql3C1-uYH_5mDFxdYmpumvMrT/exec"; // Paste the Apps Script URL here
+    const scriptURL = "https://script.google.com/macros/s/AKfycbyPTrYaajhSHXBKtMN6gDQ7HrOsr63gminQH04E8mfql3C1-uYH_5mDFxdYmpumvMrT/exec"; // Paste the Apps Script URL here
 
-  try {
-    const response = await fetch(scriptURL, {
-      method: "POST",
-      mode: "no-cors", // Important for CORS-less Sheets API
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(formData),
-    });
+    try {
+      const response = await fetch(scriptURL, {
+        method: "POST",
+        mode: "no-cors", // Important for CORS-less Sheets API
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
 
-    alert("✅ Demo request submitted! We’ll contact you soon.");
-    setIsOpen(false);
-    setFormData({
-      name: "",
-      businessName: "",
-      phone: "",
-      city: "",
-      consent: false,
-    });
-  } catch (error) {
-    console.error("Error submitting form:", error);
-    alert("❌ Submission failed. Please try again.");
-  }
-};
+      alert("✅ Demo request submitted! We’ll contact you soon.");
+      setIsOpen(false);
+      setFormData({
+        name: "",
+        businessName: "",
+        phone: "",
+        city: "",
+        consent: false,
+      });
+    } catch (error) {
+      console.error("Error submitting form:", error);
+      alert("❌ Submission failed. Please try again.");
+    }
+  };
 
 
   return (
@@ -80,7 +80,7 @@ const handleSubmit = async (e) => {
             className="fixed inset-0 flex items-center justify-center z-50 p-4"
           >
             <div className="bg-white rounded-3xl shadow-2xl max-w-3xl w-full overflow-hidden relative flex flex-col md:flex-row">
-              
+
               {/* Left Section with background image */}
               <motion.div
                 initial={{ opacity: 0, x: -40 }}
