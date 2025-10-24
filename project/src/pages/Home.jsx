@@ -194,12 +194,46 @@ const Home = () => {
                 <div className="w-2 h-2 rounded-full bg-white">
                 </div>
                 <span className="text-xs sm:text-sm font-bold text-white">LIVE</span>
-              </div> <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                <img src="https://cdn.boldbi.com/wp/pages/dashboards/retail/retail-stores-performance.png" alt="Retail performance dashboard" className="w-full h-80 md:h-96 object-cover rounded-xl border" onError={(e) => { e.target.src = 'https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=1600'; }} />
-                <img src="https://cdn.dribbble.com/userupload/4283890/file/original-0c27ce53d8b3d913076355851bde7c8e.png?resize=1504x1128&vertical=center" alt="Dashboard preview 1" className="w-full h-80 md:h-96 object-cover rounded-xl border" onError={(e) => { e.target.src = 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1600'; }} />
-                <img src="https://cdn.dribbble.com/userupload/43257615/file/original-4116059e4fe03760b22419543249feb0.png?resize=1504x1128&vertical=center" alt="Dashboard preview 2" className="w-full h-80 md:h-96 object-cover rounded-xl border" onError={(e) => { e.target.src = 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1600'; }} />
-                <img src="https://cdn.dribbble.com/userupload/10452597/file/original-9273697fca6bacd52fa533d8003993ff.png?resize=1504x1031&vertical=center" alt="Dashboard preview 3" className="w-full h-80 md:h-96 object-cover rounded-xl border" onError={(e) => { e.target.src = 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1600'; }} />
-              </div>
+              </div> 
+           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+  <img
+    src="https://cdn.boldbi.com/wp/pages/dashboards/retail/retail-stores-performance.png"
+    alt="Retail performance dashboard"
+    className="w-full h-80 md:h-96 object-cover rounded-xl border"
+    onError={(e) => {
+      e.target.src =
+        "https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=1600";
+    }}
+  />
+  <img
+    src="https://cdn.dribbble.com/userupload/4283890/file/original-0c27ce53d8b3d913076355851bde7c8e.png?resize=1504x1128&vertical=center"
+    alt="Dashboard preview 1"
+    className="w-full h-80 md:h-96 object-cover rounded-xl border sm:block hidden"
+    onError={(e) => {
+      e.target.src =
+        "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1600";
+    }}
+  />
+  <img
+    src="https://cdn.dribbble.com/userupload/43257615/file/original-4116059e4fe03760b22419543249feb0.png?resize=1504x1128&vertical=center"
+    alt="Dashboard preview 2"
+    className="w-full h-80 md:h-96 object-cover rounded-xl border sm:block hidden"
+    onError={(e) => {
+      e.target.src =
+        "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1600";
+    }}
+  />
+  <img
+    src="https://cdn.dribbble.com/userupload/10452597/file/original-9273697fca6bacd52fa533d8003993ff.png?resize=1504x1031&vertical=center"
+    alt="Dashboard preview 3"
+    className="w-full h-80 md:h-96 object-cover rounded-xl border sm:block hidden"
+    onError={(e) => {
+      e.target.src =
+        "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1600";
+    }}
+  />
+</div>
+
             </div>
             <div className="mt-6 sm:mt-8 text-center">
               <p className="text-sm sm:text-base text-gray-600 font-medium"> Trusted by
