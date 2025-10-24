@@ -232,65 +232,75 @@ const Home = () => {
               Contact Us
             </Link>
           </motion.div>
+{/* DASHBOARDS: expanded, responsive grid with 4 images */}
+<motion.div
+  initial={{ opacity: 0, y: 50 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8, delay: 0.8 }}
+  className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 sm:mt-12"
+>
+  <div className="relative rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg sm:shadow-xl lg:shadow-2xl bg-white border border-gray-200 p-4 sm:p-6">
+    {/* LIVE Badge - responsive positioning and sizing */}
+    <div className="absolute top-2 left-2 sm:top-3 sm:left-3 lg:top-4 lg:left-4 z-10 px-2 py-1 sm:px-3 sm:py-1.5 lg:px-4 lg:py-2 rounded-full bg-green-500 flex items-center space-x-1 sm:space-x-2 shadow-md sm:shadow-lg">
+      <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-white"></div>
+      <span className="text-xs font-bold text-white">LIVE</span>
+    </div>
 
-          {/* DASHBOARDS: expanded, 2-column grid with 4 images, no blur/hover overlays */}
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12"
-          >
-            <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl bg-white border border-gray-200 p-6">
-              <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-green-500 flex items-center space-x-2 shadow-lg">
-                <div className="w-2 h-2 rounded-full bg-white"></div>
-                <span className="text-xs sm:text-sm font-bold text-white">LIVE</span>
-              </div>
+    {/* Responsive grid layout */}
+    <div className="grid grid-cols-1 xs:grid-cols-2 gap-3 sm:gap-4 lg:gap-6">
+      <div className="xs:col-span-2 lg:col-span-1">
+        <img
+          src="https://cdn.boldbi.com/wp/pages/dashboards/retail/retail-stores-performance.png"
+          alt="Retail performance dashboard"
+          className="w-full h-48 xs:h-40 sm:h-56 md:h-64 lg:h-80 xl:h-96 object-cover rounded-lg sm:rounded-xl border border-gray-200"
+          onError={(e) => {
+            e.target.src = 'https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=1600';
+          }}
+        />
+      </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
-                <img
-                  src="https://cdn.boldbi.com/wp/pages/dashboards/retail/retail-stores-performance.png"
-                  alt="Retail performance dashboard"
-                  className="w-full h-80 md:h-96 object-cover rounded-xl border"
-                  onError={(e) => {
-                    e.target.src = 'https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=1600';
-                  }}
-                />
+      <div className="xs:col-span-2 lg:col-span-1">
+        <img
+          src="https://cdn.dribbble.com/userupload/4283890/file/original-0c27ce53d8b3d913076355851bde7c8e.png?resize=1504x1128&vertical=center"
+          alt="Dashboard preview 1"
+          className="w-full h-48 xs:h-40 sm:h-56 md:h-64 lg:h-80 xl:h-96 object-cover rounded-lg sm:rounded-xl border border-gray-200"
+          onError={(e) => {
+            e.target.src = 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1600';
+          }}
+        />
+      </div>
 
-                <img
-                  src="https://cdn.dribbble.com/userupload/4283890/file/original-0c27ce53d8b3d913076355851bde7c8e.png?resize=1504x1128&vertical=center"
-                  alt="Dashboard preview 1"
-                  className="w-full h-80 md:h-96 object-cover rounded-xl border"
-                  onError={(e) => {
-                    e.target.src = 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1600';
-                  }}
-                />
+      <div className="xs:col-span-1">
+        <img
+          src="https://cdn.dribbble.com/userupload/43257615/file/original-4116059e4fe03760b22419543249feb0.png?resize=1504x1128&vertical=center"
+          alt="Dashboard preview 2"
+          className="w-full h-48 xs:h-40 sm:h-56 md:h-64 lg:h-80 xl:h-96 object-cover rounded-lg sm:rounded-xl border border-gray-200"
+          onError={(e) => {
+            e.target.src = 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1600';
+          }}
+        />
+      </div>
 
-                <img
-                  src="https://cdn.dribbble.com/userupload/43257615/file/original-4116059e4fe03760b22419543249feb0.png?resize=1504x1128&vertical=center"
-                  alt="Dashboard preview 2"
-                  className="w-full h-80 md:h-96 object-cover rounded-xl border"
-                  onError={(e) => {
-                    e.target.src = 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1600';
-                  }}
-                />
+      <div className="xs:col-span-1">
+        <img
+          src="https://cdn.dribbble.com/userupload/10452597/file/original-9273697fca6bacd52fa533d8003993ff.png?resize=1504x1031&vertical=center"
+          alt="Dashboard preview 3"
+          className="w-full h-48 xs:h-40 sm:h-56 md:h-64 lg:h-80 xl:h-96 object-cover rounded-lg sm:rounded-xl border border-gray-200"
+          onError={(e) => {
+            e.target.src = 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1600';
+          }}
+        />
+      </div>
+    </div>
+  </div>
 
-                <img
-                  src="https://cdn.dribbble.com/userupload/10452597/file/original-9273697fca6bacd52fa533d8003993ff.png?resize=1504x1031&vertical=center"
-                  alt="Dashboard preview 3"
-                  className="w-full h-80 md:h-96 object-cover rounded-xl border"
-                  onError={(e) => {
-                    e.target.src = 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1600';
-                  }}
-                />
-              </div>
-            </div>
-
-            <div className="mt-6 sm:mt-8 text-center">
-              <p className="text-sm sm:text-base text-gray-600 font-medium">
-                Trusted by <span className="font-bold text-blue-600">500+</span> retail businesses across India
-              </p>
-            </div>
-          </motion.div>
+  {/* Trusted by text - responsive sizing */}
+  <div className="mt-4 sm:mt-6 lg:mt-8 text-center">
+    <p className="text-xs sm:text-sm lg:text-base text-gray-600 font-medium px-2">
+      Trusted by <span className="font-bold text-blue-600">500+</span> retail businesses across India
+    </p>
+  </div>
+</motion.div>
         </motion.div>
       </section>
 
