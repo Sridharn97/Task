@@ -3,7 +3,6 @@ import { X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import billing from "../assests/billing.png";
 
-
 export default function DemoPopup() {
   const [isOpen, setIsOpen] = useState(false);
   const [formData, setFormData] = useState({
@@ -31,7 +30,7 @@ export default function DemoPopup() {
     e.preventDefault();
 
     try {
-      const response = await fetch("http://localhost:5000/api/demo", {
+      const response = await fetch("https://task-1-f9em.onrender.com/api/demo", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -42,14 +41,13 @@ export default function DemoPopup() {
         setFormData({ name: '', businessName: '', phone: '', city: '', consent: false });
         setIsOpen(false);
       } else {
-        alert("❌ Error submitting demo request");
+        alert("❌ Error submitting demo request. Please try again later.");
       }
     } catch (error) {
-      console.error(error);
-      alert("⚠️ Unable to connect to server");
+      console.error("Submission error:", error);
+      alert("⚠️ Unable to connect to the server. Please check your internet connection.");
     }
   };
-
 
   return (
     <AnimatePresence>
@@ -85,7 +83,6 @@ export default function DemoPopup() {
                   backgroundRepeat: 'no-repeat',
                 }}
               >
-                {/* Overlay for better text visibility */}
                 <div className="absolute inset-0 bg-gradient-to-br from-blue-600/70 to-indigo-700/60"></div>
 
                 <div className="relative z-10 text-center space-y-4">
@@ -134,6 +131,7 @@ export default function DemoPopup() {
                     placeholder="Full Name *"
                     value={formData.name}
                     onChange={handleChange}
+                    required
                     className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
                   />
 
@@ -143,6 +141,7 @@ export default function DemoPopup() {
                     placeholder="Business Name *"
                     value={formData.businessName}
                     onChange={handleChange}
+                    required
                     className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
                   />
 
@@ -159,6 +158,7 @@ export default function DemoPopup() {
                       placeholder="Contact Number *"
                       value={formData.phone}
                       onChange={handleChange}
+                      required
                       className="flex-1 border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
                     />
                   </div>
@@ -169,6 +169,7 @@ export default function DemoPopup() {
                     placeholder="City *"
                     value={formData.city}
                     onChange={handleChange}
+                    required
                     className="w-full border border-gray-300 rounded-lg px-4 py-3 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
                   />
 
