@@ -27,11 +27,29 @@ export default function DemoPopup() {
     }));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    alert('Demo request submitted! We will contact you soon.');
-    setIsOpen(false);
+
+    try {
+      const response = await fetch("http://localhost:5000/api/demo", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (response.ok) {
+        alert("✅ Demo request submitted! We will contact you soon.");
+        setFormData({ name: '', businessName: '', phone: '', city: '', consent: false });
+        setIsOpen(false);
+      } else {
+        alert("❌ Error submitting demo request");
+      }
+    } catch (error) {
+      console.error(error);
+      alert("⚠️ Unable to connect to server");
+    }
   };
+
 
   return (
     <AnimatePresence>
@@ -55,7 +73,7 @@ export default function DemoPopup() {
             className="fixed inset-0 flex items-center justify-center z-50 p-4"
           >
             <div className="bg-white rounded-3xl shadow-2xl max-w-3xl w-full overflow-hidden relative flex flex-col md:flex-row">
-              
+
               {/* Left Section with background image */}
               <motion.div
                 initial={{ opacity: 0, x: -40 }}

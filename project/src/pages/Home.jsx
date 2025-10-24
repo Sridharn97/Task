@@ -166,17 +166,49 @@ const Home = () => {
 
     <div className="min-h-screen overflow-hidden">
       <DemoPopup />
-      <section className="relative min-h-screen flex items-center justify-center overflow-hidden py-12 sm:py-24"> 
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden py-12 sm:py-24">
         <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-cyan-50 to-blue-100"></div> {/* Decorative circles - removed blur and motion so dashboard stays crisp */}
-         <div className="absolute inset-0 pointer-events-none"> <div className="absolute top-20 left-20 w-72 h-72 bg-blue-300 rounded-full opacity-30" />
+        <div className="absolute inset-0 pointer-events-none"> <div className="absolute top-20 left-20 w-72 h-72 bg-blue-300 rounded-full opacity-30" />
           <div className="absolute top-40 right-20 w-72 h-72 bg-cyan-300 rounded-full opacity-30" />
           <div className="absolute -bottom-20 left-40 w-72 h-72 bg-indigo-300 rounded-full opacity-30" />
-           </div>
-            <motion.div style={{ y, opacity }} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 lg:py-40 text-center"> 
-              <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, ease: 'easeOut' }} > 
-                <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="inline-flex items-center px-4 py-2 rounded-full bg-white/50 backdrop-blur-sm border border-blue-200 mb-8" >
-                 <Sparkles className="w-4 h-4 text-blue-600 mr-2" /> <span className="text-xs sm:text-sm md:text-base font-semibold text-blue-600"> Trusted by 500+ Businesses </span> 
-                 </motion.div> <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 mb-4 sm:mb-6 leading-tight"> Smart Billing.{' '} <br className="hidden sm:block" /> <span className="bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-500 bg-clip-text text-transparent"> Smarter Business. </span> </h1> </motion.div> <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }} className="text-lg sm:text-xl md:text-2xl text-gray-700 mb-6 sm:mb-8 max-w-4xl mx-auto font-medium px-4" > Empowering departmental stores with AI-powered billing and inventory systems. </motion.p> <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.6 }} className="flex flex-col sm:flex-row gap-6 justify-center mb-16" > <Link to="/products" className="group relative px-6 sm:px-10 py-4 sm:py-5 text-base sm:text-lg font-bold bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-2xl overflow-hidden transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-blue-500/50" > <span className="relative z-10">Explore Products</span> <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div> </Link> <Link to="/contact" className="group px-6 sm:px-10 py-4 sm:py-5 text-base sm:text-lg font-bold text-blue-600 rounded-2xl border-2 border-blue-600 hover:bg-blue-600 hover:text-white transform hover:scale-105 transition-all duration-300 shadow-xl" > Contact Us </Link> </motion.div> {/* DASHBOARDS: expanded, 2-column grid with 4 images, no blur/hover overlays */} <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.8 }} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12" > <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl bg-white border border-gray-200 p-6"> <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-green-500 flex items-center space-x-2 shadow-lg"> <div className="w-2 h-2 rounded-full bg-white"></div> <span className="text-xs sm:text-sm font-bold text-white">LIVE</span> </div> <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6"> <img src="https://cdn.boldbi.com/wp/pages/dashboards/retail/retail-stores-performance.png" alt="Retail performance dashboard" className="w-full h-80 md:h-96 object-cover rounded-xl border" onError={(e) => { e.target.src = 'https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=1600'; }} /> <img src="https://cdn.dribbble.com/userupload/4283890/file/original-0c27ce53d8b3d913076355851bde7c8e.png?resize=1504x1128&vertical=center" alt="Dashboard preview 1" className="w-full h-80 md:h-96 object-cover rounded-xl border" onError={(e) => { e.target.src = 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1600'; }} /> <img src="https://cdn.dribbble.com/userupload/43257615/file/original-4116059e4fe03760b22419543249feb0.png?resize=1504x1128&vertical=center" alt="Dashboard preview 2" className="w-full h-80 md:h-96 object-cover rounded-xl border" onError={(e) => { e.target.src = 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1600'; }} /> <img src="https://cdn.dribbble.com/userupload/10452597/file/original-9273697fca6bacd52fa533d8003993ff.png?resize=1504x1031&vertical=center" alt="Dashboard preview 3" className="w-full h-80 md:h-96 object-cover rounded-xl border" onError={(e) => { e.target.src = 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1600'; }} /> </div> </div> <div className="mt-6 sm:mt-8 text-center"> <p className="text-sm sm:text-base text-gray-600 font-medium"> Trusted by <span className="font-bold text-blue-600">500+</span> retail businesses across India </p> </div> </motion.div> </motion.div> </section>
+        </div>
+        <motion.div style={{ y, opacity }} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-32 lg:py-40 text-center">
+          <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8, ease: 'easeOut' }} >
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }} className="inline-flex items-center px-4 py-2 rounded-full bg-white/50 backdrop-blur-sm border border-blue-200 mb-8" >
+              <Sparkles className="w-4 h-4 text-blue-600 mr-2" /> <span className="text-xs sm:text-sm md:text-base font-semibold text-blue-600"> Trusted by 500+ Businesses </span>
+            </motion.div> <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-gray-900 mb-4 sm:mb-6 leading-tight"> Smart Billing.{' '} <br className="hidden sm:block" /> <span className="bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-500 bg-clip-text text-transparent"> Smarter Business. </span> </h1>
+          </motion.div> <motion.p initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.4 }} className="text-lg sm:text-xl md:text-2xl text-gray-700 mb-6 sm:mb-8 max-w-4xl mx-auto font-medium px-4" >
+            Empowering departmental stores with AI-powered billing and inventory systems.
+          </motion.p>
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.6 }} className="flex flex-col sm:flex-row gap-6 justify-center mb-16" >
+            <Link to="/products" className="group relative px-6 sm:px-10 py-4 sm:py-5 text-base sm:text-lg font-bold bg-gradient-to-r from-blue-600 to-cyan-500 text-white rounded-2xl overflow-hidden transform hover:scale-105 transition-all duration-300 shadow-2xl hover:shadow-blue-500/50" >
+              <span className="relative z-10">Explore Products</span> <div className="absolute inset-0 bg-gradient-to-r from-cyan-500 to-blue-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div> </Link>
+            <Link to="/contact" className="group px-6 sm:px-10 py-4 sm:py-5 text-base sm:text-lg font-bold text-blue-600 rounded-2xl border-2 border-blue-600 hover:bg-blue-600 hover:text-white transform hover:scale-105 transition-all duration-300 shadow-xl" >
+              Contact Us
+            </Link>
+          </motion.div>
+          {/* DASHBOARDS: expanded, 2-column grid with 4 images, no blur/hover overlays */}
+          <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.8 }} className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12" >
+            <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl bg-white border border-gray-200 p-6">
+              <div className="absolute top-3 left-3 sm:top-4 sm:left-4 z-10 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-green-500 flex items-center space-x-2 shadow-lg">
+                <div className="w-2 h-2 rounded-full bg-white">
+                </div>
+                <span className="text-xs sm:text-sm font-bold text-white">LIVE</span>
+              </div> <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
+                <img src="https://cdn.boldbi.com/wp/pages/dashboards/retail/retail-stores-performance.png" alt="Retail performance dashboard" className="w-full h-80 md:h-96 object-cover rounded-xl border" onError={(e) => { e.target.src = 'https://images.pexels.com/photos/669615/pexels-photo-669615.jpeg?auto=compress&cs=tinysrgb&w=1600'; }} />
+                <img src="https://cdn.dribbble.com/userupload/4283890/file/original-0c27ce53d8b3d913076355851bde7c8e.png?resize=1504x1128&vertical=center" alt="Dashboard preview 1" className="w-full h-80 md:h-96 object-cover rounded-xl border" onError={(e) => { e.target.src = 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1600'; }} />
+                <img src="https://cdn.dribbble.com/userupload/43257615/file/original-4116059e4fe03760b22419543249feb0.png?resize=1504x1128&vertical=center" alt="Dashboard preview 2" className="w-full h-80 md:h-96 object-cover rounded-xl border" onError={(e) => { e.target.src = 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1600'; }} />
+                <img src="https://cdn.dribbble.com/userupload/10452597/file/original-9273697fca6bacd52fa533d8003993ff.png?resize=1504x1031&vertical=center" alt="Dashboard preview 3" className="w-full h-80 md:h-96 object-cover rounded-xl border" onError={(e) => { e.target.src = 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=1600'; }} />
+              </div>
+            </div>
+            <div className="mt-6 sm:mt-8 text-center">
+              <p className="text-sm sm:text-base text-gray-600 font-medium"> Trusted by
+                <span className="font-bold text-blue-600">500+</span> retail businesses across India
+              </p>
+            </div>
+          </motion.div>
+        </motion.div>
+      </section>
       <section className="relative py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
