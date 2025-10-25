@@ -20,22 +20,43 @@ const Contact = () => {
     });
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    toast.success('Message sent successfully! We will get back to you soon.', {
+ const handleSubmit = async (e) => {
+  e.preventDefault();
+
+  const scriptURL = "https://script.google.com/macros/s/AKfycbxTBed1NEcIrkbls35lG_1tnlHSP8DeCET6O0zmthNVJ8cNvVK9IUBxV4l1K_9J9yR9/exec"; // <-- paste your copied Apps Script URL here
+
+  try {
+    await fetch(scriptURL, {
+      method: "POST",
+      mode: "no-cors", // Needed for Google Apps Script CORS
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(formData),
+    });
+
+    toast.success("Message sent successfully! We will get back to you soon.", {
       duration: 4000,
       style: {
-        background: 'linear-gradient(135deg, #2563EB 0%, #06B6D4 100%)',
-        color: '#fff',
-        padding: '20px',
-        borderRadius: '16px',
-        fontSize: '16px',
-        fontWeight: '600',
+        background: "linear-gradient(135deg, #2563EB 0%, #06B6D4 100%)",
+        color: "#fff",
+        padding: "20px",
+        borderRadius: "16px",
+        fontSize: "16px",
+        fontWeight: "600",
       },
-      icon: '✨',
+      icon: "✨",
     });
-    setFormData({ name: '', email: '', subject: '', message: '' });
-  };
+
+    // Reset the form
+    setFormData({ name: "", email: "", subject: "", message: "" });
+  } catch (error) {
+    console.error("Error sending data:", error);
+    toast.error("Something went wrong! Please try again.");
+  }
+};
+
+
 
   const contactInfo = [
     {
