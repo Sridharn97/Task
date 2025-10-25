@@ -5,10 +5,12 @@ import { Star } from 'lucide-react';
 import departmentalImg from '../assests/Departmental.jpg';
 import demoBanner from '../assests/demo-banner.png';
 import DemoPopup from '../components/DemoPopup';
-
-
+import SEOMeta from '../components/SEOMeta';
+import { seoConfig } from '../config/seoConfig';
+import StructuredData from '../components/StructuredData';
 
 const Home = () => {
+  const seo = seoConfig.home;
   const { scrollYProgress } = useScroll();
   const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
   const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
@@ -189,7 +191,9 @@ const gradientVariants = {
   ));
 
   return (
-
+    <>
+     <SEOMeta {...seo} />
+      <StructuredData type="organization" />
     <div className="min-h-screen overflow-hidden">
       <DemoPopup />
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden py-12 sm:py-24">
@@ -1034,6 +1038,7 @@ const gradientVariants = {
 
 
     </div>
+    </>
   );
 };
 
