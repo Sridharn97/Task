@@ -1,338 +1,413 @@
-import { motion, useMotionValue, useTransform, useSpring } from 'framer-motion';
-import { ArrowRight, Sparkles, Star } from 'lucide-react';
-import { useState } from 'react';
+import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion';
+import { ArrowRight, Star, Sparkles, TrendingUp, Shield, Zap, Receipt, Warehouse, Users, BarChart3, CreditCard, Settings } from 'lucide-react';
+import { useRef, useState } from 'react';
 
-const Products = () => {
-  const [hoveredIndex, setHoveredIndex] = useState(null);
+const ProfessionalProductsSection = () => {
+  const [hoveredCard, setHoveredCard] = useState(null);
 
   const products = [
     {
-      name: 'SmartPOS Pro',
-      description: 'Advanced AI-driven billing software with real-time analytics and customer insights.',
-      image: 'https://images.pexels.com/photos/6693655/pexels-photo-6693655.jpeg?auto=compress&cs=tinysrgb&w=600',
-      gradient: 'from-blue-600 to-cyan-500',
-      price: '$299/mo',
-      rating: 4.9,
+      name: "Smart Billing Suite",
+      description: "Advanced billing automation with multi-department support, real-time invoicing, and automated payment processing for retail chains.",
+      department: "Finance & Billing",
+      rating: "4.9",
+      gradient: "from-slate-700 to-slate-900",
+      category: "Billing System",
+      features: ["Multi-Store Billing", "Auto Invoicing", "Tax Compliance"],
+      icon: Receipt,
+      image: "https://images.pexels.com/photos/4386433/pexels-photo-4386433.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
-      name: 'RetailEye Cloud',
-      description: 'Cloud-based sales & inventory dashboard accessible from anywhere, anytime.',
-      image: 'https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=600',
-      gradient: 'from-purple-600 to-pink-500',
-      price: '$199/mo',
-      rating: 4.8,
+      name: "Inventory Management Pro",
+      description: "Comprehensive inventory tracking across departments with automated stock alerts, supplier management, and real-time availability.",
+      department: "Inventory & Operations",
+      rating: "4.8",
+      gradient: "from-emerald-700 to-teal-800",
+      category: "Inventory System",
+      features: ["Cross-Store Inventory", "Stock Alerts", "Supplier Portal"],
+      icon: Warehouse,
+      image: "https://images.pexels.com/photos/4482900/pexels-photo-4482900.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
-      name: 'BillEase Lite',
-      description: 'Lightweight billing solution perfect for small retailers and startups.',
-      image: 'https://images.pexels.com/photos/5632371/pexels-photo-5632371.jpeg?auto=compress&cs=tinysrgb&w=600',
-      gradient: 'from-green-600 to-teal-500',
-      price: '$99/mo',
-      rating: 4.7,
+      name: "Department Analytics",
+      description: "Department-wise performance analytics with sales tracking, profitability analysis, and automated reporting for store managers.",
+      department: "Analytics & Reporting",
+      rating: "4.7",
+      gradient: "from-violet-700 to-purple-800",
+      category: "Analytics",
+      features: ["Department Metrics", "Sales Reports", "Performance Insights"],
+      icon: BarChart3,
+      image: "https://images.pexels.com/photos/590016/pexels-photo-590016.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
-      name: 'StoreMaster 360',
-      description: 'End-to-end store management system covering all aspects of retail operations.',
-      image: 'https://images.pexels.com/photos/3483098/pexels-photo-3483098.jpeg?auto=compress&cs=tinysrgb&w=600',
-      gradient: 'from-orange-600 to-red-500',
-      price: '$399/mo',
-      rating: 4.9,
+      name: "Multi-Store POS",
+      description: "Unified point-of-sale system supporting multiple departments and store locations with centralized billing and inventory management.",
+      department: "Store Operations",
+      rating: "4.9",
+      gradient: "from-blue-700 to-indigo-800",
+      category: "POS System",
+      features: ["Centralized Billing", "Multi-Location", "Real-time Sync"],
+      icon: CreditCard,
+      image: "https://images.pexels.com/photos/439227/pexels-photo-439227.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
-      name: 'QuickBill Mobile',
-      description: 'Android/iOS app for quick checkout and mobile point-of-sale operations.',
-      image: 'https://images.pexels.com/photos/4968630/pexels-photo-4968630.jpeg?auto=compress&cs=tinysrgb&w=600',
-      gradient: 'from-indigo-600 to-blue-500',
-      price: '$149/mo',
-      rating: 4.6,
+      name: "Vendor Management",
+      description: "Complete vendor and supplier management system with automated purchase orders, billing reconciliation, and payment tracking.",
+      department: "Procurement",
+      rating: "4.6",
+      gradient: "from-rose-700 to-pink-800",
+      category: "Vendor System",
+      features: ["Vendor Portal", "Purchase Orders", "Payment Tracking"],
+      icon: Users,
+      image: "https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=600"
     },
     {
-      name: 'StockSense AI',
-      description: 'AI-powered inventory prediction with automated restock alerts and forecasting.',
-      image: 'https://images.pexels.com/photos/7641824/pexels-photo-7641824.jpeg?auto=compress&cs=tinysrgb&w=600',
-      gradient: 'from-pink-600 to-rose-500',
-      price: '$249/mo',
-      rating: 4.8,
-    },
-    {
-      name: 'SafeLedger',
-      description: 'Secure accounting and ledger system with multi-user access controls.',
-      image: 'https://images.pexels.com/photos/6801648/pexels-photo-6801648.jpeg?auto=compress&cs=tinysrgb&w=600',
-      gradient: 'from-cyan-600 to-blue-500',
-      price: '$179/mo',
-      rating: 4.7,
-    },
-    {
-      name: 'InsightPro',
-      description: 'Powerful analytics tool for tracking sales trends, profit margins, and KPIs.',
-      image: 'https://images.pexels.com/photos/7567443/pexels-photo-7567443.jpeg?auto=compress&cs=tinysrgb&w=600',
-      gradient: 'from-violet-600 to-purple-500',
-      price: '$279/mo',
-      rating: 4.9,
-    },
-    {
-      name: 'AutoTax',
-      description: 'Automated GST calculation and tax return filing with compliance tracking.',
-      image: 'https://images.pexels.com/photos/7651820/pexels-photo-7651820.jpeg?auto=compress&cs=tinysrgb&w=600',
-      gradient: 'from-emerald-600 to-green-500',
-      price: '$129/mo',
-      rating: 4.6,
-    },
+      name: "Store Operations Hub",
+      description: "Centralized operations management for multi-department stores with staff scheduling, task management, and performance monitoring.",
+      department: "Operations",
+      rating: "4.8",
+      gradient: "from-amber-700 to-orange-800",
+      category: "Operations",
+      features: ["Staff Scheduling", "Task Management", "KPI Tracking"],
+      icon: Settings,
+      image: "https://images.pexels.com/photos/3182781/pexels-photo-3182781.jpeg?auto=compress&cs=tinysrgb&w=600"
+    }
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.06,
-      },
-    },
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 50, scale: 0.9 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      transition: {
-        type: 'spring',
-        stiffness: 100,
-        damping: 15,
-      },
-    },
-  };
-
   const ProductCard = ({ product, index }) => {
+    const cardRef = useRef(null);
     const [isHovered, setIsHovered] = useState(false);
-    const x = useMotionValue(0);
-    const y = useMotionValue(0);
 
-    const rotateX = useTransform(y, [-100, 100], [10, -10]);
-    const rotateY = useTransform(x, [-100, 100], [-10, 10]);
+    const mouseX = useMotionValue(0);
+    const mouseY = useMotionValue(0);
 
-    const springConfig = { stiffness: 300, damping: 30 };
-    const rotateXSpring = useSpring(rotateX, springConfig);
-    const rotateYSpring = useSpring(rotateY, springConfig);
+    const rotateX = useSpring(useTransform(mouseY, [-300, 300], [15, -15]));
+    const rotateY = useSpring(useTransform(mouseX, [-300, 300], [-15, 15]));
 
-    const handleMouseMove = (e) => {
-      const rect = e.currentTarget.getBoundingClientRect();
-      const centerX = rect.left + rect.width / 2;
-      const centerY = rect.top + rect.height / 2;
-      x.set(e.clientX - centerX);
-      y.set(e.clientY - centerY);
+    const handleMouseMove = (event) => {
+      const rect = cardRef.current.getBoundingClientRect();
+      const width = rect.width;
+      const height = rect.height;
+      const mouseX = event.clientX - rect.left - width / 2;
+      const mouseY = event.clientY - rect.top - height / 2;
+
+      mouseX.set(mouseX);
+      mouseY.set(mouseY);
+    };
+
+    const handleMouseEnter = () => {
+      setIsHovered(true);
+      setHoveredCard(index);
     };
 
     const handleMouseLeave = () => {
-      x.set(0);
-      y.set(0);
       setIsHovered(false);
+      setHoveredCard(null);
+      mouseX.set(0);
+      mouseY.set(0);
     };
+
+    const IconComponent = product.icon;
 
     return (
       <motion.div
-        variants={itemVariants}
+        ref={cardRef}
         onMouseMove={handleMouseMove}
-        onMouseEnter={() => setIsHovered(true)}
+        onMouseEnter={handleMouseEnter}
         onMouseLeave={handleMouseLeave}
         style={{
-          rotateX: rotateXSpring,
-          rotateY: rotateYSpring,
+          rotateX: rotateX,
+          rotateY: rotateY,
           transformStyle: 'preserve-3d',
         }}
-        whileHover={{ z: 50 }}
-        className="group relative rounded-3xl overflow-hidden bg-white shadow-xl hover:shadow-2xl transition-all duration-500 h-full flex flex-col"
+        whileHover={{ z: 30 }}
+        className="group relative rounded-2xl overflow-hidden bg-white border border-slate-200/60 shadow-sm hover:shadow-2xl transition-all duration-500 h-full flex flex-col"
       >
-        <div className="relative h-64 overflow-hidden">
+        {/* Animated Background Layer */}
+        <motion.div
+          animate={{
+            opacity: isHovered ? 1 : 0,
+            scale: isHovered ? 1.1 : 1,
+          }}
+          transition={{ duration: 0.4 }}
+          className={`absolute inset-0 bg-gradient-to-br ${product.gradient} opacity-0 group-hover:opacity-5`}
+        />
+
+        {/* Card Shine Effect */}
+        <motion.div
+          initial={{ x: "-100%", opacity: 0 }}
+          animate={{ x: isHovered ? "100%" : "-100%", opacity: isHovered ? 1 : 0 }}
+          transition={{ duration: 0.6 }}
+          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent transform -skew-x-12 z-20"
+        />
+
+        {/* Image Container */}
+        <div className="relative h-60 overflow-hidden">
           <motion.img
             src={product.image}
             alt={product.name}
             className="w-full h-full object-cover"
             animate={{
-              scale: isHovered ? 1.15 : 1,
+              scale: isHovered ? 1.1 : 1,
             }}
-            transition={{ duration: 0.6 }}
+            transition={{ duration: 0.6, ease: "easeOut" }}
             onError={(e) => {
               e.target.src = 'https://images.pexels.com/photos/5632371/pexels-photo-5632371.jpeg?auto=compress&cs=tinysrgb&w=600';
             }}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-black/30 to-transparent opacity-70"></div>
 
+          {/* Professional Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent"></div>
+
+          {/* Hover Overlay */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: isHovered ? 1 : 0 }}
-            className="absolute inset-0 bg-gradient-to-br from-blue-600/90 to-cyan-500/90 flex items-center justify-center"
+            className="absolute inset-0 bg-gradient-to-br from-slate-800/95 to-slate-900/95 flex items-center justify-center"
           >
-            <div className="text-center p-6">
+            <motion.div
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: isHovered ? 1 : 0.8, opacity: isHovered ? 1 : 0 }}
+              transition={{ duration: 0.4, delay: 0.1 }}
+              className="text-center p-6"
+            >
               <motion.div
                 animate={{
-                  scale: isHovered ? [1, 1.2, 1] : 1,
-                  rotate: isHovered ? 360 : 0
+                  scale: isHovered ? [1, 1.1, 1] : 1,
                 }}
-                transition={{ duration: 0.6 }}
-                className="w-20 h-20 rounded-full bg-white flex items-center justify-center mx-auto mb-4 shadow-2xl"
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="w-16 h-16 rounded-2xl bg-white/10 backdrop-blur-sm border border-white/20 flex items-center justify-center mx-auto mb-4 shadow-2xl"
               >
-                <ArrowRight className="w-10 h-10 text-blue-600" />
+                <IconComponent className="w-6 h-6 text-white" />
               </motion.div>
-              <p className="text-white font-black text-xl">View Details</p>
+              <p className="text-white font-semibold text-lg">View Department Features</p>
+              <p className="text-white/70 text-sm mt-2">Billing & operations details</p>
+            </motion.div>
+          </motion.div>
+
+          {/* Rating Badge */}
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="absolute top-4 left-4 px-3 py-2 rounded-xl bg-white/95 backdrop-blur-sm shadow-lg border border-slate-200/50"
+          >
+            <div className="flex items-center space-x-1">
+              <Star className="w-4 h-4 text-amber-500 fill-amber-500" />
+              <span className="text-sm font-semibold text-slate-800">{product.rating}</span>
             </div>
           </motion.div>
 
-          <div className="absolute top-4 left-4 px-4 py-2 rounded-full bg-white/95 backdrop-blur-sm shadow-lg">
-            <div className="flex items-center space-x-1">
-              <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
-              <span className="text-sm font-black text-gray-900">{product.rating}</span>
-            </div>
-          </div>
-
-          <div className="absolute top-4 right-4 px-4 py-2 rounded-full bg-white/95 backdrop-blur-sm shadow-lg">
-            <span className={`text-sm font-black bg-gradient-to-r ${product.gradient} bg-clip-text text-transparent`}>
-              Featured
-            </span>
-          </div>
+          {/* Department Badge */}
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            className="absolute top-4 right-4 px-3 py-2 rounded-xl bg-white/95 backdrop-blur-sm shadow-lg border border-slate-200/50"
+          >
+            <span className="text-sm font-semibold text-slate-700">{product.department}</span>
+          </motion.div>
         </div>
 
-        <div className="p-8 flex-1 flex flex-col" style={{ transform: 'translateZ(50px)' }}>
-          <h3 className="text-2xl font-black text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+        {/* Content Area */}
+        <div className="p-6 flex-1 flex flex-col" style={{ transform: 'translateZ(40px)' }}>
+          {/* Category & Icon */}
+          <div className="flex items-center justify-between mb-4">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ delay: index * 0.1 }}
+              className={`w-12 h-12 rounded-xl bg-gradient-to-br ${product.gradient} flex items-center justify-center shadow-lg`}
+            >
+              <IconComponent className="w-6 h-6 text-white" />
+            </motion.div>
+            <motion.span
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ delay: index * 0.1 + 0.2 }}
+              className="text-sm font-medium text-slate-500 bg-slate-100 px-3 py-1 rounded-lg"
+            >
+              {product.category}
+            </motion.span>
+          </div>
+
+          {/* Title */}
+          <h3 className="text-xl font-bold text-slate-900 mb-3 leading-tight group-hover:text-slate-800 transition-colors duration-300">
             {product.name}
           </h3>
-          <p className="text-gray-600 mb-6 leading-relaxed flex-1">{product.description}</p>
 
-          <div className="flex items-center justify-between mb-4">
-            <span className="text-3xl font-black text-gray-900">{product.price}</span>
-            <motion.button
-              whileHover={{ x: 5 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center text-blue-600 font-bold group-hover:text-cyan-500 transition-colors"
-            >
-              Learn More
-              <ArrowRight className="ml-2 w-5 h-5" />
-            </motion.button>
+          {/* Description */}
+          <p className="text-slate-600 mb-6 leading-relaxed flex-1 text-sm font-light">
+            {product.description}
+          </p>
+
+          {/* Features */}
+          <div className="flex flex-wrap gap-2 mb-6">
+            {product.features.map((feature, idx) => (
+              <motion.span
+                key={feature}
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ delay: index * 0.1 + idx * 0.1 }}
+                className="px-3 py-1.5 text-xs font-medium bg-slate-100 text-slate-700 rounded-lg border border-slate-200/60"
+              >
+                {feature}
+              </motion.span>
+            ))}
           </div>
 
-          <motion.div
-            initial={{ width: 0 }}
-            whileInView={{ width: '100%' }}
-            viewport={{ once: true }}
-            transition={{ delay: index * 0.03, duration: 0.8 }}
-            className={`h-2 bg-gradient-to-r ${product.gradient} rounded-full shadow-lg`}
-          ></motion.div>
+          {/* CTA Button */}
+          <motion.button
+            whileHover={{ x: 3, backgroundColor: "#1e293b" }}
+            whileTap={{ scale: 0.95 }}
+            className="w-full py-3 px-4 bg-slate-800 text-white font-semibold rounded-xl hover:bg-slate-700 transition-all duration-300 flex items-center justify-center group/btn"
+          >
+            <span>Explore Department Solution</span>
+            <motion.div
+              animate={{ x: [0, 4, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
+            >
+              <ArrowRight className="ml-2 w-4 h-4 group-hover/btn:translate-x-1 transition-transform duration-300" />
+            </motion.div>
+          </motion.button>
         </div>
 
-        <div className="absolute inset-0 pointer-events-none">
-          <motion.div
-            animate={{
-              opacity: isHovered ? 0.1 : 0,
-              scale: isHovered ? 1.5 : 1,
-            }}
-            className={`absolute top-0 right-0 w-64 h-64 bg-gradient-to-br ${product.gradient} rounded-full blur-3xl`}
-          ></motion.div>
-        </div>
+        {/* Ambient Glow */}
+        <motion.div
+          animate={{
+            opacity: isHovered ? 0.8 : 0,
+            scale: isHovered ? 1.2 : 0.8,
+          }}
+          transition={{ duration: 0.4 }}
+          className={`absolute inset-0 -z-10 bg-gradient-to-br ${product.gradient} rounded-2xl blur-xl opacity-0 group-hover:opacity-20`}
+        />
       </motion.div>
     );
   };
 
   return (
-    <div className="min-h-screen pt-24 pb-16 overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-white to-cyan-50 -z-10"></div>
+    <div className="min-h-screen pt-20 pb-16 overflow-hidden bg-gradient-to-br from-slate-50 via-white to-slate-100/80">
+      {/* Animated Background Elements */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Grid Pattern */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 1.5 }}
+          className="absolute inset-0 opacity-[0.03]"
+          style={{
+            backgroundImage: `
+              linear-gradient(rgba(15, 23, 42, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(15, 23, 42, 0.1) 1px, transparent 1px)
+            `,
+            backgroundSize: '60px 60px'
+          }}
+        />
 
-      <motion.div
-        className="absolute inset-0 overflow-hidden pointer-events-none -z-10"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-      >
+        {/* Floating Elements */}
         <motion.div
           animate={{
-            scale: [1, 1.2, 1],
-            x: [0, 100, 0],
-            y: [0, 50, 0],
+            y: [0, -40, 0],
+            rotate: [0, 180, 360],
           }}
           transition={{
             duration: 20,
             repeat: Infinity,
-            ease: 'easeInOut',
+            ease: "linear"
           }}
-          className="absolute top-20 left-20 w-96 h-96 bg-blue-400 rounded-full blur-3xl opacity-20"
-        ></motion.div>
+          className="absolute top-1/4 left-1/4 w-48 h-48 border border-slate-300/20 rounded-full"
+        />
+
         <motion.div
           animate={{
-            scale: [1, 1.3, 1],
-            x: [0, -100, 0],
-            y: [0, 100, 0],
+            y: [0, 60, 0],
+            x: [0, -30, 0],
+            rotate: [0, -180, -360],
           }}
           transition={{
             duration: 25,
             repeat: Infinity,
-            ease: 'easeInOut',
+            ease: "linear",
+            delay: 3
           }}
-          className="absolute bottom-20 right-20 w-96 h-96 bg-cyan-400 rounded-full blur-3xl opacity-20"
-        ></motion.div>
-      </motion.div>
+          className="absolute bottom-1/3 right-1/3 w-32 h-32 border border-slate-400/15 rounded-lg"
+        />
+      </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        {/* Header Section */}
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
+          initial={{ opacity: 0, y: 40 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          transition={{ duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
+          className="text-center mb-20"
         >
+          <motion.div
+            initial={{ width: 0 }}
+            animate={{ width: "80px" }}
+            transition={{ duration: 1, delay: 0.3 }}
+            className="w-20 h-1 bg-gradient-to-r from-slate-600 to-slate-400 mx-auto mb-8 rounded-full"
+          />
+
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2 }}
-            className="inline-flex items-center px-4 py-2 rounded-full bg-blue-100 mb-6"
+            className="inline-flex items-center px-4 py-2 rounded-full bg-slate-100 border border-slate-200/60 mb-6 backdrop-blur-sm"
           >
-            <Sparkles className="w-4 h-4 text-blue-600 mr-2" />
-            <span className="text-sm font-semibold text-blue-600">{products.length} Powerful Solutions</span>
+            <Receipt className="w-4 h-4 text-slate-600 mr-2" />
+            <span className="text-sm font-medium text-slate-700">Department Store Solutions</span>
           </motion.div>
 
-          <h1 className="text-5xl sm:text-6xl lg:text-7xl font-black text-gray-900 mb-6">
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-light text-slate-900 mb-6 tracking-tight">
             Our{' '}
-            <span className="bg-gradient-to-r from-blue-600 via-cyan-500 to-blue-500 bg-clip-text text-transparent animate-gradient">
+            <motion.span
+              initial={{ backgroundPosition: "0% 50%" }}
+              animate={{ backgroundPosition: "100% 50%" }}
+              transition={{ duration: 3, ease: "easeInOut", repeat: Infinity, repeatType: "reverse" }}
+              className="bg-gradient-to-r from-slate-800 via-slate-600 to-slate-800 bg-[length:200%_auto] bg-clip-text text-transparent font-semibold"
+            >
               Products
-            </span>
+            </motion.span>
           </h1>
-          <p className="text-xl sm:text-2xl text-gray-700 max-w-4xl mx-auto leading-relaxed">
-            Discover our comprehensive suite of retail management solutions designed to
-            transform your business operations
-          </p>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
+            className="text-lg text-slate-600 max-w-3xl mx-auto leading-relaxed font-light"
+          >
+            Comprehensive suite of department store management solutions for billing, inventory,
+            and operations across multiple locations and departments.
+          </motion.p>
         </motion.div>
 
+        {/* Products Grid */}
         <motion.div
-          variants={containerVariants}
           initial="hidden"
           animate="visible"
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 auto-rows-fr"
-          style={{ perspective: '1000px' }}
+          variants={{
+            hidden: { opacity: 0 },
+            visible: {
+              opacity: 1,
+              transition: {
+                staggerChildren: 0.15,
+                delayChildren: 0.3
+              }
+            }
+          }}
+          className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 auto-rows-fr"
+          style={{ perspective: '1200px' }}
         >
           {products.map((product, index) => (
             <ProductCard key={product.name} product={product} index={index} />
           ))}
         </motion.div>
 
+        {/* Enterprise CTA */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="mt-24 relative overflow-hidden rounded-3xl"
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="mt-20 text-center"
         >
-          <motion.div
-            animate={{
-              backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: 'linear',
-            }}
-            className="absolute inset-0 bg-gradient-to-r from-blue-600 via-cyan-500 via-purple-500 to-blue-600 bg-[length:200%_100%]"
-          ></motion.div>
-
-
         </motion.div>
-
         {/* Professional FAQ Section with Sophisticated Animations */}
         <section className="relative py-20 lg:py-28 overflow-hidden">
           {/* Professional Background */}
@@ -677,4 +752,4 @@ const Products = () => {
   );
 };
 
-export default Products;
+export default ProfessionalProductsSection;
